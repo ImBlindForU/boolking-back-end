@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('addresses', function (Blueprint $table) {
             $table->id();
             $table->string('street');
-            $table->double('long',13,10);
-            $table->double('lat',13,10);
+            $table->double('long',30,25);
+            $table->double('lat',30,25);
             $table->string('city');
             $table->string('country');
             $table->string('street_code', 35);
