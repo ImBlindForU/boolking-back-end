@@ -4,6 +4,10 @@
 
 @section('content')
     <div class="container">
+
+        {{-- “Hell is empty and all monsters are here.” --}}
+
+
         <div class="row justify-content-center mt-5">
             {{-- SINGLE ESTATE --}}
             <div class="col-12 col-lg-10">

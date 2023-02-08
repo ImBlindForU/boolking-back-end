@@ -4,6 +4,10 @@
 
 @section('content')
     <div class="container">
+
+        {{-- “Hell is empty and all monsters are here.” --}}
+
+
         <h1 class="text-center">Compila il form</h1>
         @if ($errors->any())
             <div class="alert alert-danger my-3" role="alert">
