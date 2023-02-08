@@ -41,8 +41,9 @@
                             <td>{{ $estate->price }}</td>
                             <td>{{ $estate->is_visible === 0 ? 'no' : 'si' }}</td>
                             <td>
-                                <a class="btn btn-success" href="{{ route('user.estates.show', $estate->slug) }}">Scritta a
-                                    caso</a>
+                                <a class="btn btn-success" href="{{ route('user.estates.show', $estate->slug) }}">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </a>
                             </td>
                         </tr>
                     @empty
