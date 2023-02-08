@@ -6,7 +6,7 @@
     <div class="container">
         <h1 class="text-center">Ecco le tue proprietà</h1>
 
-    
+    {{-- ciao --}}
         <div class="row justify-content-center mt-5">
             <div class="col-12 col-md-10 col-lg-8">
                 <table class="table">
