@@ -29,4 +29,8 @@ class Estate extends Model
     public function views(){
         return $this->hasMany(View::class);
     }
+
+    public function sponsors(){
+        return $this->belongsToMany(Sponsor::class)->withPivot('start_date','end_date');
+    }
 }
