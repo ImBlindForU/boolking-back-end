@@ -5,8 +5,16 @@
 @section('content')
     <div class="container">
         <h1 class="text-center">Inserisci la tua proprietà :0</h1>
-
-        <form enctype="multipart/form-data" action="{{route('user.estates.store')}}" method="POST">
+        @if ($errors->any())
+            <div class="alert alert-danger my-3" role="alert">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+                <form enctype="multipart/form-data" action="{{route('user.estates.store')}}" method="POST">
             @csrf
             <div class="mb-3">
               <label for="title" class="form-label">Titolo</label>
@@ -50,8 +58,8 @@
             </div>
 
             <div class="mb-3 form-check">
-              <input type="checkbox" class="form-check-input" id="is_visible" >
-              <label class="form-check-label" for="is_visible" name="is_visible">Seleziona se vuoi renderlo visibile da subito</label>
+              <input type="checkbox" class="form-check-input" id="is_visible" name="is_visible" >
+              <label class="form-check-label" for="is_visible" >Seleziona se vuoi renderlo visibile da subito</label>
             </div>
                 @foreach ($services as $service)
                     <div class="mb-3 form-check">
@@ -59,11 +67,15 @@
                         <label class="form-check-label" for="service-{{$service->id}}" >{{$service->name}}</label>
                     </div>
                 @endforeach
-            
+            <div class="mb-3">
+                <label class="form-check-label" for="description" >Descrizione</label>
+                <textarea class="form-control" id="description" name="description"></textarea>    
+            </div>
             <div class="mb-3">
                 <label for="price" class="form-label">Inserisci Prezzo</label>
                 <input class="form-control w-25" type="number" min="0.01" step="0.01" max="3000" name="price" id="price"/>
-            </div>        
+            </div>
+
             <button type="submit" class="btn btn-primary">Inserisci proprietà</button>
           </form>
 
