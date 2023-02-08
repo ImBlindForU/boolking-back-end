@@ -75,9 +75,9 @@ class EstateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Estate $estate)
     {
-        //
+        return view('user.estates.show',compact('estate'));
     }
 
     /**

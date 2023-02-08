@@ -1,6 +1,6 @@
 @extends('layouts.user')
 
-@section('title', 'Tutti i tuoi proprietà')
+@section('title', 'Tutte le proprietà')
 
 @section('content')
     <div class="container">
@@ -30,7 +30,7 @@
                                 <td>{{$estate->price}}</td>
                                 <td>{{$estate->is_visible === 0 ? 'no':'si'}}</td>
                                 <td>
-                                    <button>button</button>
+                                    <a class="btn btn-success" href="{{route('user.estates.show',$estate->slug)}}">Scritta a caso</a>
                                 </td>
                             </tr>
                         @empty
