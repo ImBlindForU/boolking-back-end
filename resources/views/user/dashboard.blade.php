@@ -1,6 +1,6 @@
 @extends('layouts.user')
 
-@section('title','bentornato')
+@section('title', 'bentornato')
 
 @section('content')
     <div class="container">
@@ -11,16 +11,20 @@
 
                     <div class="card-body">
                         @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
+                            <div class="alert alert-success" role="alert">
+                                {{ session('status') }}
+                            </div>
                         @endif
 
                         {{ __('You are logged in!') }}
+                        <div class="mt-4">
+                            <a href="{{ route('user.estates.index') }}" class="btn btn-primary">
+                                vai all' index
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 @endsection
-    
