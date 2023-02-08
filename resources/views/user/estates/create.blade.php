@@ -84,7 +84,10 @@
                     id="price" />
             </div>
 
-            <button type="submit" class="btn btn-primary">Inserisci proprietà</button>
+            <div>
+                <button type="submit" class="btn btn-primary">Inserisci proprietà</button>
+                <a class="btn btn-success px-5" href="{{ route('user.estates.index') }}">INDEX</a>
+            </div>
         </form>
 
     </div>

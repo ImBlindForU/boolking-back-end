@@ -50,7 +50,7 @@
                     {{-- / IMAGE --}}
 
                     {{-- index btn --}}
-                    <li class="mt-5 mb-5 text-center">
+                    <li class="mt-5 mb-5">
                         <a class="btn btn-success px-5" href="{{ route('user.estates.index') }}">INDEX</a>
                     </li>
                     {{-- / index btn --}}
