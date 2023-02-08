@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Estate;
+use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,7 +28,9 @@ class EstateController extends Controller
      */
     public function create()
     {
-        //
+        $types = ['casa','appartamento','villa','attico', 'tenuta','mansarda','castello','stanza privata','masseria','baita'];
+        $services = Service::all();
+        return view('user.estates.create', compact('types','services'));
     }
 
     /**

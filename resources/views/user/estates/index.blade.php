@@ -18,7 +18,6 @@
                         <th scope="col">Prezzo</th>
                         <th scope="col">Visibile</th>
                         <th scope="col">Azioni</th>
-        
                     </tr>
                     </thead>
                     <tbody>
