@@ -4,29 +4,72 @@
 
 @section('content')
     <div class="container">
-        <h1 class="text-center">{{$estate->title}}</h1>
 
-        <h2 class="text-start">Tipo{{$estate->type}}</h2>
-        @forelse ($estate->services as $service)
-            <h3 class="text-end">service{{$service->name}}</h3>
-        @empty
-            <h3 class="text-center">
-                Nessun servizio specificato
-            </h3>
-        @endforelse
-        <h4 class="text-start">Tipo = {{$estate->type}}</h4>
-        <p class="text-center">description = {{$estate->description}}</p>
-        <p class="text-start">stanze = {{$estate->room_number}}</p>
-        <p class="text-center">letti = {{$estate->bed_number}}</p>
-        <p class="text-end">bagni = {{$estate->bathroom_number}}</p>
-        <p class="text-start">dettagli = {{$estate->detail}}</p>
-        <p class="text-end">prezzo = {{$estate->price}}</p>
-        <p class="text-center">metri quadri = {{$estate->mq}}</p>
-        <p class="text-center">visibile = {{$estate->is_visible}}</p>
-        
-
-        <a  class="btn btn-warning" href="{{route('user.estates.index')}}">torna indietro</a>
+        {{-- “Hell is empty and all monsters are here.” --}}
 
 
+        <div class="row justify-content-center mt-5">
+            {{-- SINGLE ESTATE --}}
+            <div class="col-12 col-lg-10">
+                <ul style="list-style:none">
+                    {{-- header --}}
+                    <li>
+                        <h2 class="text-center mb-4">{{ $estate->title }}</h2>
+                    </li>
+                    {{-- / header --}}
+
+                    {{-- features --}}
+                    <li><strong>Tipologia:</strong> {{ $estate->type }}</li>
+                    <li><strong>Stanze:</strong> {{ $estate->room_number }}</li>
+                    <li><strong>Letti:</strong> {{ $estate->bed_number }}</li>
+                    <li><strong>Bagni:</strong> {{ $estate->bathroom_number }}</li>
+                    <li><strong>Dettagli:</strong> {{ $estate->detail }}</li>
+                    <li><strong>Prezzo:</strong> {{ $estate->price }}</li>
+                    <li><strong>Metri quadri:</strong> {{ $estate->mq }}</li>
+                    <li><strong>Visibile:</strong> {{ $estate->is_visible ? 'si' : 'no' }}</li>
+                    {{-- / features --}}
+
+                    {{-- description text --}}
+                    <li class="mb-4 mt-4">
+                        <strong>descrizione:</strong><br>
+                        {{ $estate->description }}
+                    </li>
+                    {{-- / description text --}}
+
+                    {{-- services --}}
+                    <li><strong>Servizi aggiuntivi:</strong></li>
+                    @forelse ($estate->services as $service)
+                        <li>{{ $service->name }}</li>
+                    @empty
+                        <li>
+                            Nessun servizio specificato
+                        </li>
+                    @endforelse
+                    {{-- / services --}}
+
+                    {{-- IMAGE --}}
+                    <li class="mt-5">
+                       
+                            @if (str_contains($estate->cover_img, "cover")) 
+                                 <img src="{{ asset('storage/' . $estate->cover_img) }}" style="max-width: 500px">
+                             @else 
+                                 <img src="{{$estate->cover_img}}" style="max-width: 500px">
+                        
+                            @endif
+                       
+
+                    </li>
+                    {{-- / IMAGE --}}
+
+                    {{-- index btn --}}
+                    <li class="mt-5 mb-5">
+                        <a class="btn btn-success px-5" href="{{ route('user.estates.index') }}">INDEX</a>
+                    </li>
+                    {{-- / index btn --}}
+                </ul>
+            </div>
+            {{-- / SINGLE ESTATE --}}
+
+        </div>
     </div>
 @endsection
