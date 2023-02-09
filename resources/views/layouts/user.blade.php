@@ -12,13 +12,13 @@
        
         <nav class="navbar bg-body-tertiary">
             <div class="container-fluid">
-              <a class="navbar-brand">Navbar</a>
+              <a class="navbar-brand" href="{{route('user.estates.index')}}"><img class="logo" src="{{Vite::asset('resources/images/logo.png')}}" alt="" srcset=""></a>
               <div class="header-side">
                 <form class="d-inline" action="{{ route('logout') }}" method="POST">
                     @csrf
-                    <button class="btn btn-danger" type="submit">Logout</button>
+                    <button class="btn our-btn-header" type="submit">Logout</button>
                 </form>
-                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+                <button class="btn our-btn-header" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
                     <i class="fa-solid fa-bars"></i>
                 </button>
               </div>
@@ -28,11 +28,22 @@
 
     <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
         <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Offcanvas with body scrolling</h5>
+            <div class="d-flex align-items-center">
+                <a href="">
+                    <img class="logo" src="{{Vite::asset('resources/images/logo.png')}}" alt="" srcset="">
+                </a>
+                <h5 class="offcanvas-title " id="offcanvasScrollingLabel">Boolking</h5>
+
+            </div>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
-        <div class="offcanvas-body">
-            <p>Try scrolling the rest of the page to see this option in action.</p>
+        <div class="offcanvas-body ">
+            <div class="side-bar-links d-flex flex-column">
+                <a href="">Dashboard</a>
+                <a href="">Proprietà</a>
+                <a href="">Messaggi</a>
+                <a href="">Sponsorships</a>
+            </div>
         </div>
     </div>
     @yield('content')

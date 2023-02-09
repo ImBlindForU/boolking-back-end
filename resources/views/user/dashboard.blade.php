@@ -16,10 +16,10 @@
                             </div>
                         @endif
 
-                        {{ __('You are logged in!') }}
+                        {{ __('Bentronato ' .  Auth::user()->name . " " . Auth::user()->surname ) }}
                         <div class="mt-4">
-                            <a href="{{ route('user.estates.index') }}" class="btn btn-primary">
-                                vai all' index
+                            <a href="{{ route('user.estates.index') }}" class="btn btn-danger">
+                                Visualizza le proprietà 
                             </a>
                         </div>
                     </div>

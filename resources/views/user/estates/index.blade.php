@@ -14,13 +14,13 @@
 
             <div class="col-12 col-md-10 col-lg-8 d-flex justify-content-between align-items-center">
                 <h1 class="text-center">Ecco le tue proprietà</h1>
-                <a href="{{ route('user.estates.create') }}" class="btn btn-success">
-                    inserisci proprietà
+                <a href="{{ route('user.estates.create') }}" class="btn our-btn">
+                    Inserisci proprietà
                 </a>
             </div>
 
             <div class="col-12 col-md-10 col-lg-8 mt-5">
-                <table class="table">
+                <table class="table table-hover">
                     <thead>
                         <tr>
                             <th scope="col">Titolo</th>
@@ -41,7 +41,7 @@
                             <td>{{ $estate->price }}</td>
                             <td>{{ $estate->is_visible === 0 ? 'no' : 'si' }}</td>
                             <td>
-                                <a class="btn btn-success" href="{{ route('user.estates.show', $estate->slug) }}">
+                                <a class="btn our-btn" href="{{ route('user.estates.show', $estate->slug) }}">
                                     <i class="fa-solid fa-magnifying-glass"></i>
                                 </a>
                             </td>

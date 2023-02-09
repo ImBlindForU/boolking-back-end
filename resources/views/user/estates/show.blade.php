@@ -63,7 +63,7 @@
 
                     {{-- index btn --}}
                     <li class="mt-5 mb-5">
-                        <a class="btn btn-success px-5" href="{{ route('user.estates.index') }}">INDEX</a>
+                        <a class="btn our-btn px-3" href="{{ route('user.estates.index') }}">Proprietà</a>
                     </li>
                     {{-- / index btn --}}
                 </ul>
