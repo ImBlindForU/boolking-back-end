@@ -13,5 +13,4 @@ if (password && passwordConfirm && passwordMessage) {
             passwordMessage.style.color = 'red';
         }
     })
-    
 }
