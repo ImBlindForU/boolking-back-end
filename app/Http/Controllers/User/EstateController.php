@@ -20,6 +20,7 @@ class EstateController extends Controller
      */
     public function index()
     {
+        /* Index */
         $estates = Estate::all()->where('user_id',Auth::user()->id);
         return view('user.estates.index',compact('estates'));
     }
