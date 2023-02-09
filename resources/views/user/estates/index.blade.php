@@ -56,7 +56,8 @@
                                 <form action="{{ route('user.estates.destroy', $estate->slug) }}" method="POST">
                                     @method('DELETE')
                                     @csrf
-                                    <button class="btn our-btn" type="submit">
+                                    <button class="btn our-btn delete-btn" type="submit"
+                                        button-name="{{ $estate->title }}">
                                         <i class="fa-solid fa-trash-can"></i>
                                     </button>
                                 </form>
@@ -70,6 +71,9 @@
                     </tbody>
                 </table>
             </div>
+
+            @include('partials.modal')
+
         </div>
     </div>
 @endsection

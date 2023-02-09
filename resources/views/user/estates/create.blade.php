@@ -100,8 +100,7 @@
 
                 {{-- IMG --}}
                 <div class="mt-3 w-50" style="max-height: 200px">
-                    <img class="w-50 rounded-4" id="image_preview" src="{{ asset('storage/' . $estate->cover_img) }}"
-                        alt="{{ $estate->title . ' image' }}">
+                    <img class="w-50 rounded-4" id="image_preview" src="" alt="">
                 </div>
                 {{-- / IMG --}}
 
