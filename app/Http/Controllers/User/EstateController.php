@@ -6,6 +6,7 @@ use App\Functions\Helpers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreEstateRequest;
 use App\Http\Requests\UpdateEstateRequest;
+use App\Models\Address;
 use App\Models\Estate;
 use App\Models\Service;
 use Illuminate\Support\Facades\Auth;
@@ -47,25 +48,9 @@ class EstateController extends Controller
     {
         $form_data = $request->validated();
 
-
-        // $response = Http::get("https://api.tomtom.com/search/2/geocode/De Ruijterkade 154, 1011 AC, Amsterdam.json?key=e3ENGW4vH2FBakpfksCRV16OTNwyZh0e");
-        // dd($response);
-
-        // $endpoint = "https://api.tomtom.com/search/2/geocode/";
-        // $client = new \GuzzleHttp\Client();
-
-        // $response = $client->request('GET', $endpoint, ['query' => [
-        //     'query' => 'De Ruijterkade 154',
-        //     'city' => 'Amsterdam',
-        //     'key' => 'e3ENGW4vH2FBakpfksCRV16OTNwyZh0e',
-        //     'ext' => 'json',
-        // ]]);
-
-        // dd($response);
-
-        // $statusCode = $response->getStatusCode();
-        // $content = $response->getBody();
-
+        // $street = $form_data['street'];
+        // $street_code = $form_data['street_code'];
+        // $city = $form_data['city'];
 
         $form_data['slug'] = Helpers::generateSlug($form_data['title']);
         $path = Storage::put('cover', $request->cover_img);
@@ -81,6 +66,23 @@ class EstateController extends Controller
         if ($request->has('services')) {
             $new_estate->services()->attach($form_data['services']);
         }
+
+
+
+        $endpoint = "https://api.tomtom.com/search/2/geocode/" . $form_data['street'] . "," . $form_data['street_code'] . "," . $form_data['city'] .".json?key=e3ENGW4vH2FBakpfksCRV16OTNwyZh0e";
+        $client = new \GuzzleHttp\Client();
+
+        $response = $client->request('GET', $endpoint,);
+        $tom_result = json_decode($response->getBody(), true);
+        // dd(json_decode($response->getBody(), true));
+
+        $form_data['estate_id'] = $new_estate->id;
+        $form_data['long'] =  $tom_result['results'][0]['position']['lon'];
+        $form_data['lat'] =  $tom_result['results'][0]['position']['lat'];
+        // dd($form_data['long']);
+        $new_address = Address::create($form_data);
+
+        
 
         return redirect()->route('user.estates.index');
     }
