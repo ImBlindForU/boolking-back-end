@@ -32,7 +32,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware(['auth', 'verified'])->name('user.')->prefix('/user')->group(function(){
-    Route::get('/',[PageController::class, 'index']);
+    Route::get('/',[PageController::class, 'index'])->name('dashboard');
     Route::resource('estates',EstateController::class)->parameters(['estates' => 'estate:slug']);
 });
 
