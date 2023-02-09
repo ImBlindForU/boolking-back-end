@@ -11,7 +11,6 @@
         </h1>
 
         <p class="col-md-8 fs-6">Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap. Check out the examples below for how you can remix and restyle it to your liking.</p>
-        <button class="btn our-btn-header btn-lg" type="button">Example button</button>
     </div>
 </div>
 
