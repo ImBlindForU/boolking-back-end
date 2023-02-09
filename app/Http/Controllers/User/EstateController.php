@@ -21,8 +21,8 @@ class EstateController extends Controller
     public function index()
     {
         /* Index */
-        $estates = Estate::all()->where('user_id',Auth::user()->id);
-        return view('user.estates.index',compact('estates'));
+        $estates = Estate::all()->where('user_id', Auth::user()->id);
+        return view('user.estates.index', compact('estates'));
     }
 
     /**
@@ -32,10 +32,9 @@ class EstateController extends Controller
      */
     public function create()
     {
-        $types = ['casa','appartamento','villa','attico', 'tenuta','mansarda','castello','stanza privata','masseria','baita'];
+        $types = ['casa', 'appartamento', 'villa', 'attico', 'tenuta', 'mansarda', 'castello', 'stanza privata', 'masseria', 'baita'];
         $services = Service::all();
-        return view('user.estates.create', compact('types','services'));
-        
+        return view('user.estates.create', compact('types', 'services'));
     }
 
     /**
@@ -49,21 +48,20 @@ class EstateController extends Controller
         $form_data = $request->validated();
         $form_data['slug'] = Helpers::generateSlug($form_data['title']);
         // dd($form_data);
-        $path = Storage::put('cover',$request->cover_img);
+        $path = Storage::put('cover', $request->cover_img);
         $form_data['cover_img'] = $path;
         // if($request->hasFile('cover_img')){
-            
+
         // }
         $form_data['user_id'] = Auth::user()->id;
 
-        if($request->has('is_visible')){
+        if ($request->has('is_visible')) {
             $form_data['is_visible'] = 1;
-        } else{
+        } else {
             $form_data['is_visible'] = 0;
-
         }
         $new_estate = Estate::create($form_data);
-        if($request->has('services')){
+        if ($request->has('services')) {
             $new_estate->services()->attach($form_data['services']);
         }
 
@@ -78,7 +76,11 @@ class EstateController extends Controller
      */
     public function show(Estate $estate)
     {
-        return view('user.estates.show',compact('estate'));
+        if (Auth::user()->id === $estate->user_id) {
+            return view('user.estates.show', compact('estate'));
+        } else {
+            return view('not-auth');
+        }
     }
 
     /**
