@@ -53,6 +53,13 @@
                                 <a class="btn our-btn" href="{{ route('user.estates.edit', $estate->slug) }}">
                                     <i class="fa-solid fa-wrench"></i>
                                 </a>
+                                <form action="{{ route('user.estates.destroy', $estate->slug) }}" method="POST">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button class="btn our-btn" type="submit">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     @empty

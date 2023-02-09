@@ -140,8 +140,11 @@ class EstateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Estate $estate)
     {
-        //
+        Storage::delete($estate->cover_img);
+        $estate->services()->detach();
+        $estate->delete();
+        return redirect()->route('user.estates.index')->with('message', "$estate->title è stato eliminato con successo");
     }
 }
