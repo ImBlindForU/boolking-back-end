@@ -98,6 +98,13 @@
                 <input type="file" class="form-control @error('cover_img') is-invalid @enderror" id="cover_img"
                     name="cover_img">
 
+                {{-- IMG --}}
+                <div class="mt-3 w-50" style="max-height: 200px">
+                    <img class="w-50 rounded-4" id="image_preview" src="{{ asset('storage/' . $estate->cover_img) }}"
+                        alt="{{ $estate->title . ' image' }}">
+                </div>
+                {{-- / IMG --}}
+
                 @error('cover_img')
                     <div class="invalid-feedback">
                         {{ $message }}
