@@ -8,7 +8,6 @@ use App\Http\Requests\StoreEstateRequest;
 use App\Http\Requests\UpdateEstateRequest;
 use App\Models\Estate;
 use App\Models\Service;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -47,13 +46,30 @@ class EstateController extends Controller
     public function store(StoreEstateRequest $request)
     {
         $form_data = $request->validated();
+
+
+        // $response = Http::get("https://api.tomtom.com/search/2/geocode/De Ruijterkade 154, 1011 AC, Amsterdam.json?key=e3ENGW4vH2FBakpfksCRV16OTNwyZh0e");
+        // dd($response);
+
+        // $endpoint = "https://api.tomtom.com/search/2/geocode/";
+        // $client = new \GuzzleHttp\Client();
+
+        // $response = $client->request('GET', $endpoint, ['query' => [
+        //     'query' => 'De Ruijterkade 154',
+        //     'city' => 'Amsterdam',
+        //     'key' => 'e3ENGW4vH2FBakpfksCRV16OTNwyZh0e',
+        //     'ext' => 'json',
+        // ]]);
+
+        // dd($response);
+
+        // $statusCode = $response->getStatusCode();
+        // $content = $response->getBody();
+
+
         $form_data['slug'] = Helpers::generateSlug($form_data['title']);
-        // dd($form_data);
         $path = Storage::put('cover', $request->cover_img);
         $form_data['cover_img'] = $path;
-        // if($request->hasFile('cover_img')){
-
-        // }
         $form_data['user_id'] = Auth::user()->id;
 
         if ($request->has('is_visible')) {

@@ -33,6 +33,33 @@
                 @enderror
             </div>
 
+            {{-- address --}}
+            <div class="mb-3">
+                <label for="street" class="form-label">Indirizzo</label>
+                <input class="form-control" id="street" type="text" name="street">
+            </div>
+
+            <div class="mb-3">
+                <label for="street_code" class="form-label">Numero civico</label>
+                <input class="form-control" id="street_code" type="text" name="street_code">
+            </div>
+
+            <div class="mb-3">
+                <label for="city" class="form-label">Città</label>
+                <input class="form-control" id="city" type="text" name="city">
+            </div>
+
+            <div class="mb-3">
+                <label for="country" class="form-label">Paese</label>
+                <input class="form-control" id="country" type="text" name="country">
+            </div>
+
+            {{-- <div class="mb-3">
+                <button>Genera coordinate</button>
+            </div> --}}
+            {{-- / address --}}
+
+
             <div class="mb-3">
                 <label for="room_number" class="form-label">Numero di stanze*</label>
                 <input type="number" min="1" class="form-control @error('room_number') is-invalid @enderror"
