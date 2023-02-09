@@ -39,8 +39,8 @@
         </div>
         <div class="offcanvas-body ">
             <div class="side-bar-links d-flex flex-column">
-                <a href="">Dashboard</a>
-                <a href="">Proprietà</a>
+                <a href="{{ route('user.dashboard') }}">Dashboard</a>
+                <a href="{{ route('user.estates.index') }}">Proprietà</a>
                 <a href="">Messaggi</a>
                 <a href="">Sponsorships</a>
             </div>
