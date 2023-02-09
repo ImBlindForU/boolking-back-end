@@ -19,12 +19,12 @@ return new class extends Migration
             $table->string('slug');
             $table->text('description')->nullable();
             $table->string('type');
-            $table->tinyInteger('room_number');
-            $table->tinyInteger('bed_number');
-            $table->tinyInteger('bathroom_number');
+            $table->tinyInteger('room_number')->unsigned();
+            $table->tinyInteger('bed_number')->unsigned();
+            $table->tinyInteger('bathroom_number')->unsigned();
             $table->string('detail')->nullable();
-            $table->decimal('price',8,2)->nullable();
-            $table->string('mq')->nullable();
+            $table->decimal('price', 8, 2)->nullable();
+            $table->integer('mq')->unsigned();
             $table->string('cover_img');
             $table->boolean('is_visible');
             $table->unsignedBigInteger('user_id');
