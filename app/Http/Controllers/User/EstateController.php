@@ -67,8 +67,6 @@ class EstateController extends Controller
             $new_estate->services()->attach($form_data['services']);
         }
 
-
-
         $endpoint = "https://api.tomtom.com/search/2/geocode/" . $form_data['street'] . "," . $form_data['street_code'] . "," . $form_data['city'] .".json?key=e3ENGW4vH2FBakpfksCRV16OTNwyZh0e";
         $client = new \GuzzleHttp\Client();
 
