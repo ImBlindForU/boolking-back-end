@@ -159,8 +159,8 @@
             </div>
 
             <div>
-                <button type="submit" class="btn btn-primary">Inserisci proprietà</button>
-                <button type="reset" class="btn btn-secondary">Resetta i campi</button>
+                <button type="submit" class="btn our-btn-header">Inserisci proprietà</button>
+                <button type="reset" class="btn our-btn-header">Resetta i campi</button>
             </div>
         </form>
 

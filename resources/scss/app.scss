@@ -49,3 +49,9 @@
 
 
 
+
+.form-control:focus{
+    border: 1px solid #ff5a60 !important;
+    transition: all 200ms;
+    box-shadow: 0 0 0 0.05rem #ff5a60;
+}
