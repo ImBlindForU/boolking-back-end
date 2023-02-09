@@ -89,9 +89,11 @@ class EstateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Estate $estate)
     {
-        //
+        $types = ['casa', 'appartamento', 'villa', 'attico', 'tenuta', 'mansarda', 'castello', 'stanza privata', 'masseria', 'baita'];
+        $services = Service::all();
+        return view('user.estates.edit', compact('types', 'services', 'estate'));
     }
 
     /**
