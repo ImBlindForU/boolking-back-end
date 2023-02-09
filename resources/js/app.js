@@ -6,3 +6,4 @@ import.meta.glob([
 ])
 
 import './confirmPasswordValidation';
+import './welcomeAnimation';
