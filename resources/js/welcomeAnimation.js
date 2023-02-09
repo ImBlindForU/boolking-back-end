@@ -1,10 +1,10 @@
 const  firstTime = localStorage.getItem("first_time");
-console.log(window.location.pathname);
+// console.log(window.location.pathname);
 
 if (window.location.pathname == "/") {
     if(!firstTime) {
         // first time loaded!
-        console.log(1);
+        // console.log(1);
         localStorage.setItem("first_time","1");
         const timeline = gsap.timeline({defaults: {duration: 1, }});
         timeline
