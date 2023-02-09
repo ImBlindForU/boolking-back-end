@@ -44,6 +44,9 @@
                                 <a class="btn our-btn" href="{{ route('user.estates.show', $estate->slug) }}">
                                     <i class="fa-solid fa-magnifying-glass"></i>
                                 </a>
+                                <a class="btn our-btn" href="{{ route('user.estates.edit', $estate->slug) }}">
+                                    <i class="fa-solid fa-wrench"></i>
+                                </a>
                             </td>
                         </tr>
                     @empty
