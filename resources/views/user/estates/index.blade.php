@@ -5,7 +5,7 @@
 @section('content')
     <div class="container">
 
-        {{-- “Hell is empty and all monsters are here.” --}}
+        {{-- “Hell is empty and all monsters are here. Notwithstanding here we all are” --}}
 
 
 
