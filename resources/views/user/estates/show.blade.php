@@ -49,7 +49,15 @@
 
                     {{-- IMAGE --}}
                     <li class="mt-5">
-                        <img src="{{ asset('storage/' . $estate->cover_img) }}" style="max-width: 500px">
+                       
+                            @if (str_contains($estate->cover_img, "cover")) 
+                                 <img src="{{ asset('storage/' . $estate->cover_img) }}" style="max-width: 500px">
+                             @else 
+                                 <img src="{{$estate->cover_img}}" style="max-width: 500px">
+                        
+                            @endif
+                       
+
                     </li>
                     {{-- / IMAGE --}}
 
