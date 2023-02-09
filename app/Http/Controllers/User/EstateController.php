@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Functions\Helpers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreEstateRequest;
+use App\Http\Requests\UpdateEstateRequest;
 use App\Models\Estate;
 use App\Models\Service;
 use Illuminate\Http\Request;
@@ -103,9 +104,34 @@ class EstateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateEstateRequest $request, Estate $estate)
     {
-        //
+        $form_data = $request->validated();
+        $form_data['slug'] = Helpers::generateSlug($form_data['title']);
+        // dd($form_data);
+        //$path = Storage::put('cover', $request->cover_img);
+        // if($estate->cover_img){
+        // }
+        Storage::delete($estate->cover_img);
+        $path = Storage::put('cover', $request->cover_img);
+        $form_data['cover_img'] = $path;
+
+        $form_data['user_id'] = Auth::user()->id;
+
+        if ($request->has('is_visible')) {
+            $form_data['is_visible'] = 1;
+        } else {
+            $form_data['is_visible'] = 0;
+        }
+
+        $estate->update($form_data);
+        if ($request->has('services')) {
+            $estate->services()->sync($form_data['services']);
+        } else {
+            $estate->services()->detach();
+        }
+
+        return redirect()->route('user.estates.index')->with('message', "$estate->title è stato aggiornato con successo");
     }
 
     /**

@@ -19,6 +19,12 @@
                 </a>
             </div>
 
+            @if (session('message'))
+                <div class="alert alert-success col-12 col-md-10 col-lg-8" role="alert">
+                    {{ session('message') }}
+                </div>
+            @endif
+
             <div class="col-12 col-md-10 col-lg-8 mt-5">
                 <table class="table table-hover">
                     <thead>
