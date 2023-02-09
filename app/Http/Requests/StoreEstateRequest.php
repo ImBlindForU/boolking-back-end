@@ -36,9 +36,7 @@ class StoreEstateRequest extends FormRequest
             'cover_img' => ['required','max:550','image'],
             'is_visible' => ['nullable'],
             'user_id' => ['exists:users,id'],
-            'services' => ['nullable','exists:services,id'],
-
-
+            'services' => ['nullable','exists:services,id']
         ];
     }
 }
