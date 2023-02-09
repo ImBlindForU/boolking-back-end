@@ -10,10 +10,12 @@ class DashboardController extends Controller
 {
     public function index(){
         if(Auth::user()->name){
-            $user_name = Auth::user();
+            $user_name = Auth::user()->name;
+            $user_surname = Auth::user()->surname;
         } else {
-            $user = 'Utente';
+            $user_name = 'Utente';
+            $user_surname = 'Registrato';
         }
-        return view('user.dashboard', compact('user'));
+        return view('user.dashboard', compact('user_name', 'user_surname'));
     }
 }

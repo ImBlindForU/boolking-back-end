@@ -16,7 +16,7 @@
                             </div>
                         @endif
 
-                        {{ __('Bentronato ' .  Auth::user()->name . " " . Auth::user()->surname ) }}
+                        {{ __('Bentronato ' .  $user_name . " " . $user_surname ) }}
                         <div class="mt-4">
                             <a href="{{ route('user.estates.index') }}" class="btn btn-danger">
                                 Visualizza le proprietà 
