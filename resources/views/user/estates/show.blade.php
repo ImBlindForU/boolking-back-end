@@ -54,7 +54,7 @@
                     {{-- / services --}}
 
                     {{-- IMAGE --}}
-                    <li class="mt-5">
+                    <li class="mt-5 text-center">
                        
                             @if (str_contains($estate->cover_img, "cover")) 
                                  <img src="{{ asset('storage/' . $estate->cover_img) }}" style="max-width: 500px">
