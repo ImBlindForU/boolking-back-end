@@ -186,7 +186,7 @@ class EstateController extends Controller
 
 
         } else {
-            return redirect()->route('user.estates.index')->with("wrong_address", "L'indirizzo di $estate->title sembra essere sbagliato, per rendere l'annuncio visibile inserisci un indirizzo valido");
+            return redirect()->route('user.estates.index')->with("wrong_address", "L'indirizzo di $estate->title sembra essere sbagliato, l'ultima modifica dell'indirizzo non è stata salvata");
         }
         // dd(json_decode($response->getBody(), true));
 
