@@ -68,7 +68,7 @@ class EstateController extends Controller
         }
 
         $endpoint = "https://api.tomtom.com/search/2/geocode/" . $form_data['street'] . "," . $form_data['street_code'] . "," . $form_data['city'] .".json?key=e3ENGW4vH2FBakpfksCRV16OTNwyZh0e";
-        $client = new \GuzzleHttp\Client();
+        $client = new \GuzzleHttp\Client(["verify"=>false ]);
 
         $response = $client->request('GET', $endpoint,);
         $tom_result = json_decode($response->getBody(), true);
@@ -124,10 +124,6 @@ class EstateController extends Controller
     {
         $form_data = $request->validated();
         $form_data['slug'] = Helpers::generateSlug($form_data['title']);
-        // dd($form_data);
-        //$path = Storage::put('cover', $request->cover_img);
-        // if($estate->cover_img){
-        // }
         Storage::delete($estate->cover_img);
         $path = Storage::put('cover', $request->cover_img);
         $form_data['cover_img'] = $path;
@@ -146,6 +142,29 @@ class EstateController extends Controller
         } else {
             $estate->services()->detach();
         }
+
+        $address_data = $request->validate([
+            'street' => ['required', 'max:255'],
+            'city' => ['required', 'max:255'],
+            'country' => ['required', 'max:255'],
+            'street_code' => ['required', 'max:35'],
+        ]);
+
+        $endpoint = "https://api.tomtom.com/search/2/geocode/" . $address_data['street'] . "," . $address_data['street_code'] . "," . $address_data['city'] .".json?key=e3ENGW4vH2FBakpfksCRV16OTNwyZh0e";
+        $client = new \GuzzleHttp\Client(["verify"=>false ]);
+
+        $response = $client->request('GET', $endpoint,);
+        $tom_result = json_decode($response->getBody(), true);
+        // dd(json_decode($response->getBody(), true));
+
+        // $form_data['estate_id'] = $new_estate->id;
+        $address_data['long'] =  $tom_result['results'][0]['position']['lon'];
+        $address_data['lat'] =  $tom_result['results'][0]['position']['lat'];
+        // dd($form_data['long']);
+        // $new_address = Address::create($form_data);
+
+        $estate->address()->update($address_data);
+
 
         return redirect()->route('user.estates.index')->with('message', "$estate->title è stato aggiornato con successo");
     }

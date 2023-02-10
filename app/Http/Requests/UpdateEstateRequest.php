@@ -26,6 +26,7 @@ class UpdateEstateRequest extends FormRequest
     {
         return [
             'title' => ['required', 'max:255', Rule::unique('estates')->ignore($this->estate)],
+            
             'description' => ['nullable'],
             'type' => ['required'],
             'room_number' => ['required'],

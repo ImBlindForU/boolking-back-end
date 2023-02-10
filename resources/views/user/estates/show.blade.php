@@ -17,6 +17,12 @@
                         <h2 class="text-center mb-4">{{ $estate->title }}</h2>
                     </li>
                     {{-- / header --}}
+                    {{-- Address --}}
+                    <li><strong>Indirizzo:</strong> {{ $estate->address?->street }}</li>
+                    <li><strong>Numero Civico:</strong> {{ $estate->address?->street_code }}</li>
+                    <li><strong>Città:</strong> {{ $estate->address?->city }}</li>
+                    <li><strong>Paese:</strong> {{ $estate->address?->country }}</li>
+                    {{-- /Address --}}
 
                     {{-- features --}}
                     <li><strong>Tipologia:</strong> {{ $estate->type }}</li>
