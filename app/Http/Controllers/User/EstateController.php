@@ -72,12 +72,21 @@ class EstateController extends Controller
 
         $response = $client->request('GET', $endpoint,);
         $tom_result = json_decode($response->getBody(), true);
-        // dd(json_decode($response->getBody(), true));
+        if ($tom_result["summary"]["totalResults"] == 1) {
+            // $form_data['estate_id'] = $new_estate->id;
+            $form_data['estate_id'] = $new_estate->id;
+            $form_data['long'] =  $tom_result['results'][0]['position']['lon'];
+            $form_data['lat'] =  $tom_result['results'][0]['position']['lat'];
+            $new_address = Address::create($form_data);
+            // $new_estate->address()->update($address_data);
+        } else {
+            $new_estate->update(["is_visible" => 0]);
+            return redirect()->route('user.estates.index')->with("wrong_address", "L'indirizzo di $new_estate->title sembra essere sbagliato, per rendere l'annuncio visibile inserisci un indirizzo valido");
+        }
 
-        $form_data['estate_id'] = $new_estate->id;
+
         $form_data['long'] =  $tom_result['results'][0]['position']['lon'];
         $form_data['lat'] =  $tom_result['results'][0]['position']['lat'];
-        // dd($form_data['long']);
         $new_address = Address::create($form_data);
 
         
@@ -158,15 +167,29 @@ class EstateController extends Controller
 
         $response = $client->request('GET', $endpoint,);
         $tom_result = json_decode($response->getBody(), true);
+        // dd($tom_result);
+        if ($tom_result["summary"]["totalResults"] == 1) {
+            // $form_data['estate_id'] = $new_estate->id;
+            $address_data['long'] =  $tom_result['results'][0]['position']['lon'];
+            $address_data['lat'] =  $tom_result['results'][0]['position']['lat'];
+            // dd($form_data['long']);
+            // $new_address = Address::create($form_data);
+            if (isset($estate->address->street)) {
+
+                $estate->address()->update($address_data);
+
+            } else{
+                $address_data["estate_id"] = $estate->id;
+                $new_address = Address::create($address_data);
+
+            }
+
+
+        } else {
+            return redirect()->route('user.estates.index')->with("wrong_address", "L'indirizzo di $estate->title sembra essere sbagliato, per rendere l'annuncio visibile inserisci un indirizzo valido");
+        }
         // dd(json_decode($response->getBody(), true));
 
-        // $form_data['estate_id'] = $new_estate->id;
-        $address_data['long'] =  $tom_result['results'][0]['position']['lon'];
-        $address_data['lat'] =  $tom_result['results'][0]['position']['lat'];
-        // dd($form_data['long']);
-        // $new_address = Address::create($form_data);
-
-        $estate->address()->update($address_data);
 
 
         return redirect()->route('user.estates.index')->with('message', "$estate->title è stato aggiornato con successo");

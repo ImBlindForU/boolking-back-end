@@ -24,6 +24,11 @@
                     {{ session('message') }}
                 </div>
             @endif
+            @if (session('wrong_address'))
+                <div class="alert alert-danger col-12 col-md-10 col-lg-8" role="alert">
+                    {{ session('wrong_address') }}
+                </div>
+            @endif
 
             <div class="col-12 col-md-10 col-lg-8 mt-5">
                 <table class="table table-hover">
