@@ -138,9 +138,11 @@ class EstateController extends Controller
      */
     public function update(UpdateEstateRequest $request, Estate $estate)
     {
+
         $form_data = $request->validated();
         $form_data['slug'] = Helpers::generateSlug($form_data['title']);
 
+        /* Add cover_img file to public storage */
         if ($request->hasFile("cover_img")) {
             if($estate->cover_img) Storage::delete($estate->cover_img);
             $path = Storage::put('cover', $request->cover_img);
@@ -149,6 +151,7 @@ class EstateController extends Controller
 
         $form_data['user_id'] = Auth::user()->id;
 
+        /* Set is_visible */
         if ($request->has('is_visible')) {
             $form_data['is_visible'] = 1;
         } else {
@@ -156,12 +159,15 @@ class EstateController extends Controller
         }
 
         $estate->update($form_data);
+
+        /* Add Services to estates */
         if ($request->has('services')) {
             $estate->services()->sync($form_data['services']);
         } else {
             $estate->services()->detach();
         }
 
+        /* Do a validation to addresses */
         $address_data = $request->validate([
             'street' => ['required', 'max:255'],
             'city' => ['required', 'max:255'],
@@ -169,52 +175,61 @@ class EstateController extends Controller
             'street_code' => ['required', 'max:35'],
         ]);
 
+        /* Call Tom Tom Api */
         $endpoint = "https://api.tomtom.com/search/2/geocode/" . $address_data['street'] . "," . $address_data['street_code'] . "," . $address_data['city'] .".json?key=e3ENGW4vH2FBakpfksCRV16OTNwyZh0e";
         $client = new \GuzzleHttp\Client(["verify"=>false ]);
 
         $response = $client->request('GET', $endpoint,);
         $tom_result = json_decode($response->getBody(), true);
-        // dd($tom_result);
+        
+        /* If the address is correct add it to database, else redirect to index with error */
         if ($tom_result["summary"]["totalResults"] == 1) {
-            // $form_data['estate_id'] = $new_estate->id;
+            
             $address_data['long'] =  $tom_result['results'][0]['position']['lon'];
             $address_data['lat'] =  $tom_result['results'][0]['position']['lat'];
-            // dd($form_data['long']);
-            // $new_address = Address::create($form_data);
+
+            /* If there's another address, update it */
             if (isset($estate->address->street)) {
-
                 $estate->address()->update($address_data);
-
             } else{
                 $address_data["estate_id"] = $estate->id;
                 $new_address = Address::create($address_data);
-
             }
-
 
         } else {
+
             return redirect()->route('user.estates.index')->with("wrong_address", "L'indirizzo di $estate->title sembra essere sbagliato, l'ultima modifica dell'indirizzo non è stata salvata");
         }
-                
+
+        /* If there are files */
         if($request->hasFile('images')){
 
-            if ($estate->images) {
-                dd($estate->images->items);
-                foreach ($estate->images as $img) {
+            /* Validate them */
+            $img_validator = $request->validate([
+                'images.*' => ['nullable', 'max:550', 'image'],
+                'images' => ['max:4'],
+            ]);
+
+            $img_validator["estate_id"] = $estate->id;
+
+            $images = Image::all()->where('estate_id', $estate->id);
+
+            /* If there are images linked to estate */
+            if (count($images) > 0) {
+
+                foreach ($images as $img) {
                     Storage::delete($img->path);
-                    $img_path = Storage::put('images', $img);
-                    $form_data['path'] = $img_path;
-                    $img->update($form_data);
                 }
                 
-            } else {
+                $estate->images()->delete();
+            }
+            
+
                 foreach($request->file('images') as $img){
                     $img_path = Storage::put('images', $img);
-                    $form_data['path'] = $img_path;
-                    $form_data["estate_id"] = $estate->id;
-                    $new_img = Image::create($form_data);
+                    $img_validator['path'] = $img_path;
+                    $new_img = Image::create($img_validator);
                 }
-            }
         }
 
 
