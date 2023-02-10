@@ -38,22 +38,42 @@
 
             <div class="mb-3">
                 <label for="street" class="form-label">Indirizzo</label>
-                <input class="form-control" id="street" type="text" name="street" value="{{ old('street', $estate->address?->street) }}">
+                <input class="form-control @error('street') is-invalid @enderror" id="street" type="text" name="street" value="{{ old('street', $estate->address?->street) }}">
+                @error('street')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
 
             <div class="mb-3">
                 <label for="street_code" class="form-label">Numero civico</label>
-                <input class="form-control" id="street_code" type="text" name="street_code" value="{{ old('street_code', $estate->address?->street_code) }}">
+                <input class="form-control @error('street_code') is-invalid @enderror" id="street_code" type="text" name="street_code" value="{{ old('street_code', $estate->address?->street_code) }}">
+                @error('street_code')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
 
             <div class="mb-3">
                 <label for="city" class="form-label">Città</label>
-                <input class="form-control" id="city" type="text" name="city" value="{{ old('city', $estate->address?->city) }}">
+                <input class="form-control @error('city') is-invalid @enderror" id="city" type="text" name="city" value="{{ old('city', $estate->address?->city) }}">
+                @error('city')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
 
             <div class="mb-3">
                 <label for="country" class="form-label">Paese</label>
-                <input class="form-control" id="country" type="text" name="country" value="{{ old('country', $estate->address?->country) }}">
+                <input class="form-control @error('country') is-invalid @enderror" id="country" type="text" name="country" value="{{ old('country', $estate->address?->country) }}">
+                @error('country')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
 
 

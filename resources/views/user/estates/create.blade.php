@@ -35,30 +35,44 @@
 
             {{-- address --}}
             <div class="mb-3">
-                <label for="street" class="form-label">Indirizzo</label>
-                <input class="form-control" id="street" type="text" name="street">
+                <label for="street" class="form-label">Indirizzo *</label>
+                <input class="form-control @error('street') is-invalid @enderror" id="street" type="text" name="street" value="{{ old('street')}}">
+                @error('street')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
 
             <div class="mb-3">
-                <label for="street_code" class="form-label">Numero civico</label>
-                <input class="form-control" id="street_code" type="text" name="street_code">
+                <label for="street_code" class="form-label">Numero civico *</label>
+                <input class="form-control @error('street_code') is-invalid @enderror" id="street_code" type="text" name="street_code" value="{{ old('street_code')}}">
+                @error('street_code')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
 
             <div class="mb-3">
-                <label for="city" class="form-label">Città</label>
-                <input class="form-control" id="city" type="text" name="city">
+                <label for="city" class="form-label">Città *</label>
+                <input class="form-control @error('city') is-invalid @enderror" id="city" type="text" name="city" value="{{ old('city')}}">
+                @error('city')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
 
             <div class="mb-3">
-                <label for="country" class="form-label">Paese</label>
-                <input class="form-control" id="country" type="text" name="country">
+                <label for="country" class="form-label">Paese *</label>
+                <input class="form-control @error('country') is-invalid @enderror" id="country" type="text" name="country" value="{{ old('country')}}">
+                @error('country')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
-
-            {{-- <div class="mb-3">
-                <button>Genera coordinate</button>
-            </div> --}}
-            {{-- / address --}}
-
 
             <div class="mb-3">
                 <label for="room_number" class="form-label">Numero di stanze*</label>
@@ -142,10 +156,12 @@
             <div class="mb-3">
                 <label for="images" class="form-label">Altre immagini (max: 4)</label>
                 <input type="file" class="form-control @error('images') is-invalid @enderror" id="images" name="images[]" multiple>
+                <p id="imgs-error" class="d-none text-danger">Le immagini non possono essere più di 4</p>
 
-                <div class="my-5  text-center">
-                    <img class="rounded-4" id="image_preview" style="max-height: 300px"  src="" alt="">
+                <div class="my-5 d-flex justify-content-center flex-wrap"  id="optional-imgs-div">
+                    
                 </div>
+
 
                 @error('images')
                     <div class="invalid-feedback">
