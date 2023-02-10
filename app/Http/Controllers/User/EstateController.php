@@ -8,6 +8,7 @@ use App\Http\Requests\StoreEstateRequest;
 use App\Http\Requests\UpdateEstateRequest;
 use App\Models\Address;
 use App\Models\Estate;
+use App\Models\Image;
 use App\Models\Service;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -89,7 +90,13 @@ class EstateController extends Controller
         $form_data['lat'] =  $tom_result['results'][0]['position']['lat'];
         $new_address = Address::create($form_data);
 
-        
+        if($request->hasFile('images')){
+            foreach($request->file('images') as $img){
+                $img_path = Storage::put('images', $img);
+                $form_data['path'] = $img_path;
+                $new_img = Image::create($form_data);
+            }
+        }
 
         return redirect()->route('user.estates.index');
     }

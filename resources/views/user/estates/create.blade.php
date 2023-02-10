@@ -120,16 +120,15 @@
                 @enderror
             </div>
 
+            {{-- Cover Img --}}
             <div class="mb-3">
                 <label for="cover_img" class="form-label">Immagine di copertina*</label>
                 <input type="file" class="form-control @error('cover_img') is-invalid @enderror" id="cover_img"
                     name="cover_img">
 
-                {{-- IMG --}}
                 <div class="my-5  text-center"  >
                     <img class="rounded-4" id="image_preview" style="max-height: 300px"  src="" alt="">
                 </div>
-                {{-- / IMG --}}
 
                 @error('cover_img')
                     <div class="invalid-feedback">
@@ -137,6 +136,24 @@
                     </div>
                 @enderror
             </div>
+            {{-- /Cover Img --}}
+
+            {{-- Optional Imgs --}}
+            <div class="mb-3">
+                <label for="images" class="form-label">Altre immagini (max: 4)</label>
+                <input type="file" class="form-control @error('images') is-invalid @enderror" id="images" name="images[]" multiple>
+
+                <div class="my-5  text-center">
+                    <img class="rounded-4" id="image_preview" style="max-height: 300px"  src="" alt="">
+                </div>
+
+                @error('images')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+            {{-- /Optional Imgs --}}
 
             <div class="mb-3 form-check">
                 <input type="checkbox" class="form-check-input" id="is_visible" name="is_visible">

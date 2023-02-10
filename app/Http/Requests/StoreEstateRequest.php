@@ -38,6 +38,8 @@ class StoreEstateRequest extends FormRequest
             'price' => ['nullable'],
             'mq' => ['nullable'],
             'cover_img' => ['required', 'max:550', 'image'],
+            'images.*' => ['nullable', 'max:550', 'image'],
+            'images' => ['max:4'],
             'is_visible' => ['nullable'],
             'user_id' => ['exists:users,id'],
             'services' => ['required', 'exists:services,id']
