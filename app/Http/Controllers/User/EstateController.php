@@ -124,9 +124,12 @@ class EstateController extends Controller
     {
         $form_data = $request->validated();
         $form_data['slug'] = Helpers::generateSlug($form_data['title']);
-        Storage::delete($estate->cover_img);
-        $path = Storage::put('cover', $request->cover_img);
-        $form_data['cover_img'] = $path;
+
+        if ($request->hasFile("cover_img")) {
+            if($estate->cover_img) Storage::delete($estate->cover_img);
+            $path = Storage::put('cover', $request->cover_img);
+            $form_data['cover_img'] = $path;
+        }
 
         $form_data['user_id'] = Auth::user()->id;
 

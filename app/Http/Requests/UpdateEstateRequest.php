@@ -35,7 +35,7 @@ class UpdateEstateRequest extends FormRequest
             'detail' => ['nullable'],
             'price' => ['nullable'],
             'mq' => ['nullable'],
-            'cover_img' => ['required', 'max:550', 'image'],
+            'cover_img' => ['nullable', 'max:550', 'image'],
             'is_visible' => ['nullable'],
             'user_id' => ['exists:users,id'],
             'services' => ['required', 'exists:services,id']

@@ -38,22 +38,22 @@
 
             <div class="mb-3">
                 <label for="street" class="form-label">Indirizzo</label>
-                <input class="form-control" id="street" type="text" name="street">
+                <input class="form-control" id="street" type="text" name="street" value="{{ old('street', $estate->address?->street) }}">
             </div>
 
             <div class="mb-3">
                 <label for="street_code" class="form-label">Numero civico</label>
-                <input class="form-control" id="street_code" type="text" name="street_code">
+                <input class="form-control" id="street_code" type="text" name="street_code" value="{{ old('street_code', $estate->address?->street_code) }}">
             </div>
 
             <div class="mb-3">
                 <label for="city" class="form-label">Città</label>
-                <input class="form-control" id="city" type="text" name="city">
+                <input class="form-control" id="city" type="text" name="city" value="{{ old('city', $estate->address?->city) }}">
             </div>
 
             <div class="mb-3">
                 <label for="country" class="form-label">Paese</label>
-                <input class="form-control" id="country" type="text" name="country">
+                <input class="form-control" id="country" type="text" name="country" value="{{ old('country', $estate->address?->country) }}">
             </div>
 
 
@@ -124,8 +124,8 @@
                     name="cover_img">
 
                 {{-- IMG --}}
-                <div class="mt-3 w-50" style="max-height: 200px">
-                    <img class="w-50 rounded-4" id="image_preview" src="{{ asset('storage/' . $estate->cover_img) }}"
+                <div class="my-5  text-center " >
+                    <img class="rounded-4 " id="image_preview" style="max-height: 300px" src="{{ asset('storage/' . $estate->cover_img) }}"
                         alt="{{ $estate->title . ' image' }}">
                 </div>
                 {{-- / IMG --}}
