@@ -25,16 +25,17 @@
                 </div>
             @endif
             @if (session('wrong_address'))
-                <div class="alert alert-danger col-12 col-md-10 col-lg-8" role="alert">
+                <div class="alert alert-danger col-12 col-md-11 col-lg-10" role="alert">
                     {{ session('wrong_address') }}
                 </div>
             @endif
 
-            <div class="col-12 col-md-10 col-lg-8 mt-5">
+            <div class="col-12 col-md-12 col-lg-10 mt-5" style="overflow-x: auto">
                 <table class="table table-hover">
                     <thead>
                         <tr>
                             <th scope="col">Titolo</th>
+                            <th scope="col">Cover</th>
                             <th scope="col">Tipologia</th>
                             <th scope="col">Mq</th>
                             <th scope="col">Prezzo</th>
@@ -45,13 +46,16 @@
                     <tbody>
                         <tr>
                             @forelse ($estates as $estate)
-                        <tr>
+                        <tr class="">
                             <th scope="row">{{ $estate->title }}</th>
+                            <td class="w-25"> 
+                                <img style="width: 30vmin" src="{{ asset('storage/' . $estate->cover_img) }}" alt="" srcset="">
+                               </td>
                             <td>{{ $estate->type }}</td>
                             <td>{{ $estate->mq }}</td>
                             <td>{{ $estate->price }}</td>
                             <td>{{ $estate->is_visible === 0 ? 'no' : 'si' }}</td>
-                            <td>
+                            <td class="">
                                 <a class="btn our-btn" href="{{ route('user.estates.show', $estate->slug) }}">
                                     <i class="fa-solid fa-magnifying-glass"></i>
                                 </a>

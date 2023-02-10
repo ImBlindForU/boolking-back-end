@@ -148,14 +148,32 @@
                     <img class="rounded-4 " id="image_preview" style="max-height: 300px" src="{{ asset('storage/' . $estate->cover_img) }}"
                         alt="{{ $estate->title . ' image' }}">
                 </div>
-                {{-- / IMG --}}
-
                 @error('cover_img')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
                 @enderror
+                {{-- / IMG --}}
             </div>
+
+             {{-- Optional Imgs --}}
+             <div class="mb-3">
+                <label for="images" class="form-label">Altre immagini (max: 4)</label>
+                <input type="file" class="form-control @error('images') is-invalid @enderror" id="images" name="images[]" multiple>
+                <p id="imgs-error" class="d-none text-danger">Le immagini non possono essere più di 4</p>
+
+                <div class="my-5 d-flex justify-content-center flex-wrap"  id="optional-imgs-div">
+                    
+                </div>
+
+
+                @error('images')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+            {{-- /Optional Imgs --}}
 
             <div class="mb-3 form-check">
                 <input type="checkbox" class="form-check-input" id="is_visible" name="is_visible"

@@ -66,7 +66,19 @@
 
                     </li>
                     {{-- / IMAGE --}}
+                    
+                    @forelse ($estate->images as $image)
 
+                    <li class="mt-5 text-center">
+
+                        <img src="{{ asset('storage/' . $image->path) }}" style="max-width: 500px">
+                        
+                    </li>
+                        
+                    @empty
+                        
+                    @endforelse
+                
                     {{-- index btn --}}
                     <li class="mt-5 mb-5">
                         <a class="btn our-btn px-3" href="{{ route('user.estates.index') }}">Proprietà</a>

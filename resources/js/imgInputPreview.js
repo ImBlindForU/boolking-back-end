@@ -14,30 +14,38 @@ if (inputImg && imgPrew) {
     });
 }
 
-optionalImgs.addEventListener("change", function () {
-    const uploadedImgs = this.files;
+if (optionalImgs && optionalWrapper) {
+    
+    optionalImgs.addEventListener("change", function () {
+        const uploadedImgs = this.files;
 
-    if (uploadedImgs.length <= 4) {
-        for (let i = 0; i < uploadedImgs.length; i++) {
+        optionalWrapper.innerHTML = "";
 
-            const thisImg = uploadedImgs[i];
-            
-            if (thisImg) {
-                const imgElement = document.createElement("img");
-
-                showPreview(thisImg, imgElement);
-
-                imgElement.classList.add("my-5", "text-center", "rounded-4");
-
-                imgElement.style.maxHeight = "150px";
-
-                optionalWrapper.append(imgElement);
+        if (uploadedImgs.length <= 4) {
+            for (let i = 0; i < uploadedImgs.length; i++) {
+    
+                const thisImg = uploadedImgs[i];
+                
+                if (thisImg) {
+                    const imgElement = document.createElement("img");
+    
+                    showPreview(thisImg, imgElement);
+    
+                    imgElement.classList.add("my-5", "text-center", "rounded-4");
+    
+                    imgElement.style.maxHeight = "150px";
+    
+                    optionalWrapper.append(imgElement);
+                }
             }
+        } else {
+            imgsError.classList.remove('d-none');
         }
-    } else {
-        imgsError.classList.remove('d-none');
-    }
-});
+    });
+}
+
+
+
 
 // FUNCTIONS
 

@@ -195,8 +195,27 @@ class EstateController extends Controller
         } else {
             return redirect()->route('user.estates.index')->with("wrong_address", "L'indirizzo di $estate->title sembra essere sbagliato, l'ultima modifica dell'indirizzo non è stata salvata");
         }
-        // dd(json_decode($response->getBody(), true));
+                
+        if($request->hasFile('images')){
 
+            if ($estate->images) {
+                dd($estate->images->items);
+                foreach ($estate->images as $img) {
+                    Storage::delete($img->path);
+                    $img_path = Storage::put('images', $img);
+                    $form_data['path'] = $img_path;
+                    $img->update($form_data);
+                }
+                
+            } else {
+                foreach($request->file('images') as $img){
+                    $img_path = Storage::put('images', $img);
+                    $form_data['path'] = $img_path;
+                    $form_data["estate_id"] = $estate->id;
+                    $new_img = Image::create($form_data);
+                }
+            }
+        }
 
 
         return redirect()->route('user.estates.index')->with('message', "$estate->title è stato aggiornato con successo");
