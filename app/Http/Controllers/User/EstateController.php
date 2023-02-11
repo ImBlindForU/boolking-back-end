@@ -197,7 +197,7 @@ class EstateController extends Controller
             }
 
         } else {
-
+            $estate->update(["is_visible" => 0]);
             return redirect()->route('user.estates.index')->with("wrong_address", "L'indirizzo di $estate->title sembra essere sbagliato, l'ultima modifica dell'indirizzo non è stata salvata");
         }
 
@@ -212,24 +212,35 @@ class EstateController extends Controller
 
             $img_validator["estate_id"] = $estate->id;
 
-            $images = Image::all()->where('estate_id', $estate->id);
+            $images = Image::all()->where('estate_id', $estate->id)->toArray();
 
-            /* If there are images linked to estate */
-            if (count($images) > 0) {
-
-                foreach ($images as $img) {
-                    Storage::delete($img->path);
-                }
-                
-                $estate->images()->delete();
-            }
             
+            if(count($images) >= 1){
+                $New_start_index = 0;
+                $images = array_combine(range($New_start_index, count($images) + ($New_start_index - 1)), array_values($images));
+            }
 
-                foreach($request->file('images') as $img){
-                    $img_path = Storage::put('images', $img);
-                    $img_validator['path'] = $img_path;
-                    $new_img = Image::create($img_validator);
+            $path = [];
+            
+            foreach ($request->file('images') as $key => $img) {
+
+                if(isset($images[$key]['path'])){
+                    Storage::delete($images[$key]['path']);
                 }
+
+                $img_path = Storage::put('images', $img);
+                array_push($path, $img_path);
+                $img_validator['path'][$key] = $path[$key];
+
+                if(isset($images[$key]['path'])){
+                    Image::where("id", $images[$key]['id'])->update(["path" => $img_validator['path'][$key]]);
+                } else {
+                    Image::create([
+                        'path' => $img_validator['path'][$key],
+                        'estate_id' => $estate->id
+                    ]);
+                }
+            }
         }
 
 
@@ -244,6 +255,14 @@ class EstateController extends Controller
      */
     public function destroy(Estate $estate)
     {
+        $images = Image::all()->where('estate_id', $estate->id)->toArray();
+        
+        if(count($images) > 0){
+            foreach($images as $image){
+                Storage::delete($image['path']);
+            };
+        }
+
         Storage::delete($estate->cover_img);
         $estate->services()->detach();
         $estate->delete();
