@@ -37,7 +37,7 @@
                             <th scope="col">Titolo</th>
                             <th scope="col">Cover</th>
                             <th scope="col">Tipologia</th>
-                            <th scope="col">Mq</th>
+                            <th scope="col">&#x33A1;</th>
                             <th scope="col">Prezzo</th>
                             <th scope="col">Visibile</th>
                             <th scope="col">Azioni</th>
@@ -54,7 +54,7 @@
                             <td>{{ $estate->type }}</td>
                             <td>{{ $estate->mq }}</td>
                             <td>{{ $estate->price }}</td>
-                            <td>{{ $estate->is_visible === 0 ? 'no' : 'si' }}</td>
+                            <td>{{ $estate->is_visible === 0 ? 'No' : 'Si' }}</td>
                             <td class="">
                                 <a class="btn our-btn d-block mb-1 "  href="{{ route('user.estates.show', $estate->slug) }}">
                                     <i class="fa-solid fa-magnifying-glass"></i>
