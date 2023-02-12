@@ -38,32 +38,26 @@
                     @endforelse
                 </div>
                 <h4 class="mt-5"> Informazioni </h4>
-                <div id="info-wrapper" class="d-flex justify-content-between w-100">
-                <div class="street w-50">
-
+                <div id="info-wrapper" class="d-flex  flex-wrap justify-content-between w-100">
+                <div class="street col-12 col-md-9">
+                    <p><span>Visibile:</span> {{ $estate->is_visible ? 'Si' : 'No' }}   |   <span>Prezzo:</span> {{ $estate->price }}</p>
                     <p><span>Indirizzo:</span> {{ $estate->address?->street }}</p>
-                    <p><span>Numero Civico:</span> {{ $estate->address?->street_code }}</p>
+                    <p><span>Numero civico:</span> {{ $estate->address?->street_code }}</p>
                     <p><span>Città:</span>{{ $estate->address?->city }} </p>
                     <p><span>Paese:</span> {{ $estate->address?->country }}</p>
+                    <p><span>Dettagli indirizzo:</span> {{ $estate->detail }}</p>
+
                 </div>
 
-                <div class="estate-details w-50 text-start">
+                <div class="estate-details col-12 col-md-3 ">
+                    <p><span>&#x33A1;:</span> {{ $estate->mq }}</p>
+
                     <p> <span>Tipologia:</span>{{ $estate->address?->type }} </p>
-                    <p><span>Nr. Stanze:</span> {{ $estate->address?->room_number }}</p>
-                    <p><span>Nr. Letti:</span>{{ $estate->address?->bed_number }} </p>
-                    <p><span>Nr. Bagni:</span> {{ $estate->address?->bathroom_number }}</p>
+                    <p><span>Stanze:</span> {{ $estate->address?->room_number }}</p>
+                    <p><span>Camere:</span>{{ $estate->address?->bed_number }} </p>
+                    <p><span>Bagni:</span> {{ $estate->address?->bathroom_number }}</p>
                 </div>
                 </div>
-                <div>
-                    <p><span>Dettagli:</span> {{ $estate->detail }}</p>
-                    <p><span>Prezzo:</span> {{ $estate->price }}</p>
-                    <p><span>Metri Quadri:</span> {{ $estate->mq }}</p>
-                    <p><span>Visibile:</span> {{ $estate->is_visible ? 'Si' : 'No' }}</p>
-                    <p><span>Descrizione:</span> {{ $estate->description}}</p>
-
-                </div>
-
-
                 <dl style="">
                     <dt>Servizi aggiuntivi:</dt>
 
@@ -77,6 +71,15 @@
                     @endforelse
                     {{-- / services --}}
                 </dl>
+                <div>
+                    
+                    
+                    <p><span>Descrizione:</span> {{ $estate->description}}</p>
+
+                </div>
+
+
+              
                 {{-- index btn --}}
                 <div class="mt-5 mb-5">
                     <a class="btn our-btn px-3" href="{{ route('user.estates.index') }}">Proprietà</a>
