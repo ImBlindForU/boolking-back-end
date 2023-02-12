@@ -127,6 +127,65 @@ tr{
     }
 }
 
+.cards-container{
+   
+gap: 1em .5em;
+    .estate-card{
+        border: 1px solid #c1baba;
+        border-radius: 15px;
+        overflow: hidden;
+        width: calc(100% / 1 - .25em) !important;
+        display: flex;
+        flex-direction: column;
+        // justify-content: center;
+        // align-items: center;
+        .estate-img{
+            width: 100%;
+            img{
+            width: 100%;
+                max-width: 100%;
+                object-fit: cover;
+            }
+        }
+
+        .estate-txt
+        {
+            background-color: #fff;
+            padding: .5em;
+            display: flex;
+            direction: row;
+            justify-content: space-between;
+
+            p{
+                margin-bottom: .1em !important;
+            }
+        }
+    
+        transition: all 300ms;
+        &:hover{
+            transition: all 300ms;
+            transform: scale(1.3);
+            z-index: 9;
+            border-bottom: 3px solid #ff5a60;
+            box-shadow: 0px 10px 10px #827b7b;
+            z-index: 99;
+           
+           
+        }
+        @media screen and (min-width: 500px) {
+            width: calc(100% / 2 - .5em) !important;
+            }
+        @media screen and (min-width: 800px) {
+            width: calc(100% / 3 - .5em) !important;
+            }
+        @media screen and (min-width: 1200px) {
+            width: calc(100% / 4 - .5em) !important;
+            }
+    }
+    
+
+}
+
 #cover-img{
     box-shadow: 10px 10px 20px 10px #ccc9c9;
 

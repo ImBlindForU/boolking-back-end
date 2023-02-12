@@ -47,6 +47,7 @@
                 <a href="{{ route('user.dashboard') }}">Dashboard</a>
                 <a href="{{ route('user.estates.index') }}">Proprietà</a>
                 <a href="">Messaggi</a>
+                <a href="">Statistiche</a>
                 <a href="">Sponsorships</a>
             </div>
         </div>
