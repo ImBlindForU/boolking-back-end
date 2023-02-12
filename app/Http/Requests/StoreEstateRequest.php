@@ -45,4 +45,31 @@ class StoreEstateRequest extends FormRequest
             'services' => ['required', 'exists:services,id']
         ];
     }
+
+    public function messages(){
+        return [
+            'title.required' => 'Il titolo è obbligatorio',
+            'title.max' => 'Il titolo può avere al massimo 255 caratteri',
+            'title.unique' => 'Il titolo inserito è già presente nel nostro database',
+            'street.required' => "L'indirizzo è obbligatorio",
+            'street.max' => "L'indirizzo può avere al massimo 255 caratteri",
+            'city.required' => "La città è obbligatorio",
+            'city.max' => "La città può avere al massimo 255 caratteri",
+            'country.required' => "Il paese è obbligatorio",
+            'country.max' => "Il paese può avere al massimo 255 caratteri",
+            'street_code.required' => "Il numero civico è obbligatorio",
+            'street_code.max' => "Il numero civico può avere al massimo 255 caratteri",
+            'type.required' => 'La tipologia è obbligatoria',
+            'room_number.required' => 'Il numero di stanze è obbligatorio',
+            'bed_number.required' => 'Il numero di letti è obbligatorio',
+            'bathroom_number.required' => 'Il numero di bagni è obbligatorio',
+            'cover_img.required' => "L'immagine di copertina è obbligatoria",
+            'cover_img.max' => "L'immagine di copertina non può superare 550kb",
+            'cover_img.image' => "L'immagine di copertina deve essere un file di tipo immagine",
+            'images.*.max' => "Le immagini non possono superare 550kb",
+            'images.*.image' => "Le immagini devono essere un file di tipo immagine",
+            'images.max' => 'Le immagini non possono essere più di 4',
+            'services.required' => 'Inserisci almeno un servizio'
+        ];
+    }
 }
