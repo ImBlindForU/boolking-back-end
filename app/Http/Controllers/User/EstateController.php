@@ -68,8 +68,8 @@ class EstateController extends Controller
             $new_estate->services()->attach($form_data['services']);
         }
 
-        $endpoint = "https://api.tomtom.com/search/2/geocode/" . $form_data['street'] . "," . $form_data['street_code'] . "," . $form_data['city'] .".json?key=e3ENGW4vH2FBakpfksCRV16OTNwyZh0e";
-        $client = new \GuzzleHttp\Client(["verify"=>false ]);
+        $endpoint = "https://api.tomtom.com/search/2/geocode/" . $form_data['street'] . "," . $form_data['street_code'] . "," . $form_data['city'] . ".json?key=e3ENGW4vH2FBakpfksCRV16OTNwyZh0e";
+        $client = new \GuzzleHttp\Client(["verify" => false]);
 
         $response = $client->request('GET', $endpoint,);
         $tom_result = json_decode($response->getBody(), true);
@@ -90,15 +90,15 @@ class EstateController extends Controller
         $form_data['lat'] =  $tom_result['results'][0]['position']['lat'];
         $new_address = Address::create($form_data);
 
-        if($request->hasFile('images')){
-            foreach($request->file('images') as $img){
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $img) {
                 $img_path = Storage::put('images', $img);
                 $form_data['path'] = $img_path;
                 $new_img = Image::create($form_data);
             }
         }
 
-        return redirect()->route('user.estates.index');
+        return redirect()->route('user.estates.index')->with('message', "$new_estate->title è stato creato con successo");
     }
 
     /**
@@ -144,7 +144,7 @@ class EstateController extends Controller
 
         /* Add cover_img file to public storage */
         if ($request->hasFile("cover_img")) {
-            if($estate->cover_img) Storage::delete($estate->cover_img);
+            if ($estate->cover_img) Storage::delete($estate->cover_img);
             $path = Storage::put('cover', $request->cover_img);
             $form_data['cover_img'] = $path;
         }
@@ -176,33 +176,32 @@ class EstateController extends Controller
         ]);
 
         /* Call Tom Tom Api */
-        $endpoint = "https://api.tomtom.com/search/2/geocode/" . $address_data['street'] . "," . $address_data['street_code'] . "," . $address_data['city'] .".json?key=e3ENGW4vH2FBakpfksCRV16OTNwyZh0e";
-        $client = new \GuzzleHttp\Client(["verify"=>false ]);
+        $endpoint = "https://api.tomtom.com/search/2/geocode/" . $address_data['street'] . "," . $address_data['street_code'] . "," . $address_data['city'] . ".json?key=e3ENGW4vH2FBakpfksCRV16OTNwyZh0e";
+        $client = new \GuzzleHttp\Client(["verify" => false]);
 
         $response = $client->request('GET', $endpoint,);
         $tom_result = json_decode($response->getBody(), true);
-        
+
         /* If the address is correct add it to database, else redirect to index with error */
         if ($tom_result["summary"]["totalResults"] == 1) {
-            
+
             $address_data['long'] =  $tom_result['results'][0]['position']['lon'];
             $address_data['lat'] =  $tom_result['results'][0]['position']['lat'];
 
             /* If there's another address, update it */
             if (isset($estate->address->street)) {
                 $estate->address()->update($address_data);
-            } else{
+            } else {
                 $address_data["estate_id"] = $estate->id;
                 $new_address = Address::create($address_data);
             }
-
         } else {
             $estate->update(["is_visible" => 0]);
             return redirect()->route('user.estates.index')->with("wrong_address", "L'indirizzo di $estate->title sembra essere sbagliato, l'ultima modifica dell'indirizzo non è stata salvata");
         }
 
         /* If there are files */
-        if($request->hasFile('images')){
+        if ($request->hasFile('images')) {
 
             /* Validate them */
             $img_validator = $request->validate([
@@ -214,17 +213,17 @@ class EstateController extends Controller
 
             $images = Image::all()->where('estate_id', $estate->id)->toArray();
 
-            
-            if(count($images) >= 1){
+
+            if (count($images) >= 1) {
                 $New_start_index = 0;
                 $images = array_combine(range($New_start_index, count($images) + ($New_start_index - 1)), array_values($images));
             }
 
             $path = [];
-            
+
             foreach ($request->file('images') as $key => $img) {
 
-                if(isset($images[$key]['path'])){
+                if (isset($images[$key]['path'])) {
                     Storage::delete($images[$key]['path']);
                 }
 
@@ -232,7 +231,7 @@ class EstateController extends Controller
                 array_push($path, $img_path);
                 $img_validator['path'][$key] = $path[$key];
 
-                if(isset($images[$key]['path'])){
+                if (isset($images[$key]['path'])) {
                     Image::where("id", $images[$key]['id'])->update(["path" => $img_validator['path'][$key]]);
                 } else {
                     Image::create([
@@ -256,9 +255,9 @@ class EstateController extends Controller
     public function destroy(Estate $estate)
     {
         $images = Image::all()->where('estate_id', $estate->id)->toArray();
-        
-        if(count($images) > 0){
-            foreach($images as $image){
+
+        if (count($images) > 0) {
+            foreach ($images as $image) {
                 Storage::delete($image['path']);
             };
         }
