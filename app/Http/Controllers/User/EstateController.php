@@ -69,8 +69,9 @@ class EstateController extends Controller
         }
 
         $tomKey = env('MYTOMTOMKEY');
+        $geocodeUrl = env('URLGEOCODE');
 
-        $endpoint = "https://api.tomtom.com/search/2/geocode/" . $form_data['street'] . "," . $form_data['street_code'] . "," . $form_data['city'] . ".json?key=" . $tomKey;
+        $endpoint = $geocodeUrl . $form_data['street'] . "," . $form_data['street_code'] . "," . $form_data['city'] . ".json?key=" . $tomKey;
         $client = new \GuzzleHttp\Client(["verify" => false]);
 
         $response = $client->request('GET', $endpoint,);
@@ -179,7 +180,8 @@ class EstateController extends Controller
 
         /* Call Tom Tom Api */
         $tomKey = env('MYTOMTOMKEY');
-        $endpoint = "https://api.tomtom.com/search/2/geocode/" . $address_data['street'] . "," . $address_data['street_code'] . "," . $address_data['city'] . ".json?key=" . $tomKey;
+        $geocodeUrl = env('URLGEOCODE');
+        $endpoint = $geocodeUrl . $address_data['street'] . "," . $address_data['street_code'] . "," . $address_data['city'] . ".json?key=" . $tomKey;
         $client = new \GuzzleHttp\Client(["verify" => false]);
 
         $response = $client->request('GET', $endpoint,);
