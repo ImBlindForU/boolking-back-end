@@ -127,20 +127,31 @@ tr{
     }
 }
 
+#cover-img{
+    box-shadow: 10px 10px 20px 10px #ccc9c9;
+
+
+}
 
 #img-show-div{
     gap: .5em;
     width: 100%;
+    // border: 1px solid #ff5a60;
+    padding: .3em ;
+    border-radius: 20px;
+    box-shadow: 10px 10px 20px 10px #ccc9c9;
 }
+
+
 .optional-img-show{
     width: calc(100% / 2 - .25em) !important;
-    border-radius: 0px 0px 10px 10px;
+    border-radius: 0px 0px 20px 20px;
 
     @media screen and (min-width: 700px) {
         
         
         
-        width: calc(100% / 5 - .25em) !important;
+        width: calc(100% / 4 - .5em) !important;
             border-radius: 10px !important;
         }
 }
@@ -149,5 +160,8 @@ tr{
 
 }
 #optional-imgs-div{
-    gap: .5em;
+    gap: .5em;}
+
+p > span{
+    font-weight: bold;
 }

@@ -13,18 +13,19 @@
             <div class="col-12 col-lg-10">
                 <h2 class="text-center mb-4">{{ $estate->title }}</h2>
                 
-                <div class="mt-2 text-center"> 
+                <div class="mt-2 mb-4 text-center"> 
                 {{--  IMAGE --}}
                 @if (str_contains($estate->cover_img, "cover")) 
-                <img class="rounded-3 w-100" src="{{ asset('storage/' . $estate->cover_img) }}" style="max-width: 500px">
+                <img id="cover-img" class="rounded-3 w-100" src="{{ asset('storage/' . $estate->cover_img) }}" style="max-width: 900px">
                 @else 
-                    <img src="{{$estate->cover_img}}" style="max-width: 500px">
+                    <img src="{{$estate->cover_img}}" style="max-width: 900px">
         
                 @endif
                 {{-- / IMAGE --}}
                 </div>
 
-                <div id="img-show-div"  class="d-flex flex-wrap  my-4 align-center mx-auto justify-content-center">
+                <p class="fw-bold">Additional Photos:</p>
+                <div id="img-show-div"  class="d-flex flex-wrap  mb-4 align-center mx-auto justify-content-center">
                     @forelse ($estate->images as $image)
 
 
