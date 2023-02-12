@@ -82,7 +82,7 @@
               
                 {{-- index btn --}}
                 <div class="mt-5 mb-5">
-                    <a class="btn our-btn px-3" href="{{ route('user.estates.index') }}">Proprietà</a>
+                    <a class="btn our-btn px-3" href="{{ route('user.estates.index') }}">Torna alle proprietà</a>
                 </div>
                 {{-- / index btn --}}
             </div>
