@@ -88,11 +88,6 @@ class EstateController extends Controller
             return redirect()->route('user.estates.index')->with("wrong_address", "L'indirizzo di $new_estate->title sembra essere sbagliato, per rendere l'annuncio visibile inserisci un indirizzo valido");
         }
 
-
-        $form_data['long'] =  $tom_result['results'][0]['position']['lon'];
-        $form_data['lat'] =  $tom_result['results'][0]['position']['lat'];
-        $new_address = Address::create($form_data);
-
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $img) {
                 $img_path = Storage::put('images', $img);
@@ -170,13 +165,12 @@ class EstateController extends Controller
             $estate->services()->detach();
         }
 
-        /* Do a validation to addresses */
-        $address_data = $request->validate([
-            'street' => ['required', 'max:255'],
-            'city' => ['required', 'max:255'],
-            'country' => ['required', 'max:255'],
-            'street_code' => ['required', 'max:35'],
-        ]);
+        $address_data = [
+            'street' => $form_data['street'],
+            'city' => $form_data['city'],
+            'country' => $form_data['country'],
+            'street_code' => $form_data['street_code']
+        ];
 
         /* Call Tom Tom Api */
         $tomKey = env('MYTOMTOMKEY');
@@ -208,13 +202,11 @@ class EstateController extends Controller
         /* If there are files */
         if ($request->hasFile('images')) {
 
-            /* Validate them */
-            $img_validator = $request->validate([
-                'images.*' => ['nullable', 'max:550', 'image'],
-                'images' => ['max:4'],
-            ]);
+            $img_data = [
+                'images' => $form_data['images']
+            ];
 
-            $img_validator["estate_id"] = $estate->id;
+            $img_data["estate_id"] = $estate->id;
 
             $images = Image::all()->where('estate_id', $estate->id)->toArray();
 
@@ -234,13 +226,13 @@ class EstateController extends Controller
 
                 $img_path = Storage::put('images', $img);
                 array_push($path, $img_path);
-                $img_validator['path'][$key] = $path[$key];
+                $img_data['path'][$key] = $path[$key];
 
                 if (isset($images[$key]['path'])) {
-                    Image::where("id", $images[$key]['id'])->update(["path" => $img_validator['path'][$key]]);
+                    Image::where("id", $images[$key]['id'])->update(["path" => $img_data['path'][$key]]);
                 } else {
                     Image::create([
-                        'path' => $img_validator['path'][$key],
+                        'path' => $img_data['path'][$key],
                         'estate_id' => $estate->id
                     ]);
                 }
