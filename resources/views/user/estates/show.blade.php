@@ -13,7 +13,7 @@
             <div class="col-12 col-lg-10">
                 <h2 class="text-center mb-4">{{ $estate->title }}</h2>
                 
-                <div class="mt-2 mb-4 text-center"> 
+                <div class="mt-2 mb-5 text-center"> 
                 {{--  IMAGE --}}
                 @if (str_contains($estate->cover_img, "cover")) 
                 <img id="cover-img" class="rounded-3 w-100" src="{{ asset('storage/' . $estate->cover_img) }}" style="max-width: 900px">
@@ -24,7 +24,7 @@
                 {{-- / IMAGE --}}
                 </div>
 
-                <p class="fw-bold">Additional Photos:</p>
+                <h4>Additional Photos:</h4>
                 <div id="img-show-div"  class="d-flex flex-wrap  mb-4 align-center mx-auto justify-content-center">
                     @forelse ($estate->images as $image)
 
@@ -37,7 +37,7 @@
                         
                     @endforelse
                 </div>
-
+                <h4 class="mt-5"> Informazioni </h4>
                 <div id="info-wrapper" class="d-flex justify-content-between w-100">
                 <div class="street w-50">
 
@@ -47,7 +47,7 @@
                     <p><span>Paese:</span> {{ $estate->address?->country }}</p>
                 </div>
 
-                <div class="estate-details w-50 text-end">
+                <div class="estate-details w-50 text-start">
                     <p> <span>Tipologia:</span>{{ $estate->address?->type }} </p>
                     <p><span>Nr. Stanze:</span> {{ $estate->address?->room_number }}</p>
                     <p><span>Nr. Letti:</span>{{ $estate->address?->bed_number }} </p>
