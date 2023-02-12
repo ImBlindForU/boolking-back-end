@@ -12,20 +12,20 @@
 
         <div class="row justify-content-center mt-5">
 
-            <div class="col-12 col-md-10 col-lg-8 d-flex justify-content-between align-items-center">
+            <div class="col-12 col-md-10 col-lg-8 d-flex mb-3 justify-content-between align-items-center">
                 <h1 class="text-center">Ecco le tue proprietà</h1>
                 <a href="{{ route('user.estates.create') }}" class="btn our-btn">
                     Inserisci proprietà
                 </a>
             </div>
-
+            
             @if (session('message'))
-                <div class="alert alert-success col-12 col-md-10 col-lg-8" role="alert">
+                <div class="alert alert-success col-10" role="alert">
                     {{ session('message') }}
                 </div>
             @endif
             @if (session('wrong_address'))
-                <div class="alert alert-danger col-12 col-md-11 col-lg-10" role="alert">
+                <div class="alert alert-danger col-10" role="alert">
                     {{ session('wrong_address') }}
                 </div>
             @endif
@@ -56,16 +56,16 @@
                             <td>{{ $estate->price }}</td>
                             <td>{{ $estate->is_visible === 0 ? 'no' : 'si' }}</td>
                             <td class="">
-                                <a class="btn our-btn" href="{{ route('user.estates.show', $estate->slug) }}">
+                                <a class="btn our-btn d-block mb-1 "  href="{{ route('user.estates.show', $estate->slug) }}">
                                     <i class="fa-solid fa-magnifying-glass"></i>
                                 </a>
-                                <a class="btn our-btn" href="{{ route('user.estates.edit', $estate->slug) }}">
+                                <a class="btn our-btn d-block  mb-1 " href="{{ route('user.estates.edit', $estate->slug) }}">
                                     <i class="fa-solid fa-wrench"></i>
                                 </a>
-                                <form action="{{ route('user.estates.destroy', $estate->slug) }}" method="POST">
+                                <form class="text-center" action="{{ route('user.estates.destroy', $estate->slug) }}" method="POST">
                                     @method('DELETE')
                                     @csrf
-                                    <button class="btn our-btn delete-btn" type="submit"
+                                    <button class="btn our-btn delete-btn d-block w-100"  type="submit"
                                         button-name="{{ $estate->title }}">
                                         <i class="fa-solid fa-trash-can"></i>
                                     </button>

@@ -11,10 +11,38 @@
         <div class="row justify-content-center mt-5">
             {{-- SINGLE ESTATE --}}
             <div class="col-12 col-lg-10">
+                <h2 class="text-center mb-4">{{ $estate->title }}</h2>
+                
+                <div class="mt-5 text-center"> 
+                {{--  IMAGE --}}
+                @if (str_contains($estate->cover_img, "cover")) 
+                <img class="rounded-3" src="{{ asset('storage/' . $estate->cover_img) }}" style="max-width: 500px">
+                @else 
+                    <img src="{{$estate->cover_img}}" style="max-width: 500px">
+        
+                @endif
+                {{-- / IMAGE --}}
+                </div>
+
+                <div id="img-show-div"  class="d-flex flex-wrap mt-5 align-center mx-auto justify-content-center">
+                    @forelse ($estate->images as $image)
+
+
+                        <img class="optional-img-show" src="{{ asset('storage/' . $image->path) }}" style="max-width: 500px">
+                        
+                
+                        
+                    @empty
+                        
+                    @endforelse
+
+                </div>
+
+
+
                 <ul style="list-style:none">
                     {{-- header --}}
                     <li>
-                        <h2 class="text-center mb-4">{{ $estate->title }}</h2>
                     </li>
                     {{-- / header --}}
                     {{-- Address --}}
@@ -53,31 +81,7 @@
                     @endforelse
                     {{-- / services --}}
 
-                    {{-- IMAGE --}}
-                    <li class="mt-5 text-center">
-                       
-                            @if (str_contains($estate->cover_img, "cover")) 
-                                 <img src="{{ asset('storage/' . $estate->cover_img) }}" style="max-width: 500px">
-                             @else 
-                                 <img src="{{$estate->cover_img}}" style="max-width: 500px">
-                        
-                            @endif
-                       
-
-                    </li>
-                    {{-- / IMAGE --}}
-                    
-                    @forelse ($estate->images as $image)
-
-                    <li class="mt-5 text-center">
-
-                        <img src="{{ asset('storage/' . $image->path) }}" style="max-width: 500px">
-                        
-                    </li>
-                        
-                    @empty
-                        
-                    @endforelse
+                  
                 
                     {{-- index btn --}}
                     <li class="mt-5 mb-5">

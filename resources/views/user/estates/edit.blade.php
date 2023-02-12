@@ -9,16 +9,9 @@
         {{-- “Hell is empty and all monsters are here.” --}}
 
 
-        <h1 class="text-center">Inserisci i dati della tua proprietà</h1>
-        @if ($errors->any())
-            <div class="alert alert-danger my-3" role="alert">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+        <h1 class="text-center">Modifica i dati della tua proprietà</h1>
+        @include('partials.error_messages')
+
 
         <form enctype="multipart/form-data" action="{{ route('user.estates.update', $estate->slug) }}" method="POST">
             @method('PUT')
@@ -36,7 +29,9 @@
                 @enderror
             </div>
 
-            <div class="mb-3">
+            <div class="d-flex flex-column flex-md-row">
+
+            <div class="mb-3 me-md-2" id="address-input-div">
                 <label for="street" class="form-label">Indirizzo</label>
                 <input class="form-control @error('street') is-invalid @enderror" id="street" type="text" name="street" value="{{ old('street', $estate->address?->street) }}">
                 @error('street')
@@ -56,7 +51,11 @@
                 @enderror
             </div>
 
-            <div class="mb-3">
+        </div>
+
+        <div class="d-flex flex-column flex-md-row">
+
+            <div class="mb-3 me-md-2 city-country-input-div">
                 <label for="city" class="form-label">Città</label>
                 <input class="form-control @error('city') is-invalid @enderror" id="city" type="text" name="city" value="{{ old('city', $estate->address?->city) }}">
                 @error('city')
@@ -66,7 +65,7 @@
                 @enderror
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3  city-country-input-div">
                 <label for="country" class="form-label">Paese</label>
                 <input class="form-control @error('country') is-invalid @enderror" id="country" type="text" name="country" value="{{ old('country', $estate->address?->country) }}">
                 @error('country')
@@ -75,9 +74,10 @@
                     </div>
                 @enderror
             </div>
+        </div>
 
-
-            <div class="mb-3">
+        <div class="d-flex flex-column flex-md-row justify-content-md-between">
+            <div class="mb-3 me-md-2 flex-md-grow-1">
                 <label for="room_number" class="form-label">Numero di stanze*</label>
                 <input type="number" min="1" class="form-control @error('room_number') is-invalid @enderror"
                     id="room_number" name="room_number" value="{{ old('room_number', $estate->room_number) }}">
@@ -89,7 +89,7 @@
                 @enderror
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3 me-md-2 flex-md-grow-1">
                 <label for="bed_number" class="form-label">Numero di letti*</label>
                 <input type="number" min="1" class="form-control @error('bed_number') is-invalid @enderror"
                     id="bed_number" name="bed_number" value="{{ old('bed_number', $estate->bed_number) }}">
@@ -101,7 +101,7 @@
                 @enderror
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3 me-md-2 flex-md-grow-1">
                 <label for="bathroom_number" class="form-label">Numero di bagni*</label>
                 <input type="number" min="1" class="form-control @error('bathroom_number') is-invalid @enderror"
                     id="bathroom_number" name="bathroom_number"
@@ -113,6 +113,20 @@
                     </div>
                 @enderror
             </div>
+
+            <div class="mb-3 flex-md-grow-1">
+                <label for="mq" class="form-label">Metri quadri*</label>
+                <input type="number" min="1" class="form-control @error('mq') is-invalid @enderror" id="mq"
+                    name="mq" value="{{ old('mq', $estate->mq) }}">
+
+                @error('mq')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+        </div>
+
 
             <div class="mb-3">
                 <label for="detail" class="form-label">Altri dettagli</label>
@@ -126,17 +140,7 @@
                 @enderror
             </div>
 
-            <div class="mb-3">
-                <label for="mq" class="form-label">Metri quadri*</label>
-                <input type="number" min="1" class="form-control @error('mq') is-invalid @enderror" id="mq"
-                    name="mq" value="{{ old('mq', $estate->mq) }}">
-
-                @error('mq')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
-            </div>
+           
 
             <div class="mb-3">
                 <label for="cover_img" class="form-label">Immagine di copertina*</label>
@@ -163,7 +167,13 @@
                 <p id="imgs-error" class="d-none text-danger">Le immagini non possono essere più di 4</p>
 
                 <div class="my-5 d-flex justify-content-center flex-wrap"  id="optional-imgs-div">
-                    
+                    @forelse ($estate->images as $image)
+                    <img class="rounded-4 " style="max-height: 300px" src="{{ asset('storage/' . $image->path) }}"
+                        alt="{{ $estate->title . ' image' }}">
+                        
+                    @empty
+                        
+                    @endforelse
                 </div>
 
 
@@ -208,6 +218,8 @@
 
                 {{-- @checked($errors->any() ? in_array($technology->id, old('technologies', [])) : $project->technologies->contains($technology)) --}}
 
+                <div class="d-md-flex flex-md-column flex-md-wrap" id="services-input-div">
+
                 @foreach ($services as $service)
                     <div class="mb-1 form-check">
                         <input type="checkbox" class="form-check-input" id="service-{{ $service->id }}"
@@ -215,6 +227,8 @@
                         <label class="form-check-label" for="service-{{ $service->id }}">{{ $service->name }}</label>
                     </div>
                 @endforeach
+            </div>
+
             </div>
 
             <div class="mb-3">
@@ -241,7 +255,7 @@
             </div>
 
             <div>
-                <button type="submit" class="btn our-btn-header">Inserisci proprietà</button>
+                <button type="submit" class="btn our-btn-header">Aggiorna proprietà</button>
                 <button type="reset" class="btn our-btn-header">Resetta i campi</button>
             </div>
         </form>

@@ -1,6 +1,6 @@
 @extends('layouts.user')
 
-@section('title', 'bentornato')
+@section('title', 'Benvenuto')
 
 @section('content')
     <div class="container">
@@ -16,7 +16,7 @@
                             </div>
                         @endif
 
-                        {{ __('Bentronato ' .  $user_name . " " . $user_surname ) }}
+                        {{ __('Benvenuto ' .  $user_name . " " . $user_surname ) }}
                         <div class="mt-4">
                             <a href="{{ route('user.estates.index') }}" class="btn btn-danger">
                                 Visualizza le proprietà 

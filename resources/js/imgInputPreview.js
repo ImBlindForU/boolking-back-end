@@ -31,7 +31,7 @@ if (optionalImgs && optionalWrapper) {
     
                     showPreview(thisImg, imgElement);
     
-                    imgElement.classList.add("my-5", "text-center", "rounded-4");
+                    imgElement.classList.add( "text-center", "rounded-4");
     
                     imgElement.style.maxHeight = "150px";
     
