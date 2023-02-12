@@ -6,8 +6,9 @@
 
     <div class="container py-4">
 
-        {{-- “Hell is empty and all monsters are here.” --}}
-
+        <div class="mt-5 mb-5 text-end">
+            <a class="btn our-btn px-3" href="{{ route('user.estates.index') }}"><i class="fa-solid fa-chevron-left"></i></a>
+        </div>
 
         <h1 class="text-center">Modifica i dati della tua proprietà</h1>
         @include('partials.error_messages')
