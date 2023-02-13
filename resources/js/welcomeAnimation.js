@@ -4,7 +4,7 @@ if (window.location.pathname == "/user/estates") {
         const timeline = gsap.timeline({defaults: {duration: 1, }});
         timeline.
         from(".estate-card",{ opacity: '0', ease: " Power4.easeOut", stagger: .3})
-        .from("tr", {opacity: '0', ease: " Power4.easeOut", stagger: .3})
+        .from("tr", {opacity: '0', x: "-300%", ease: " Power4.easeOut", stagger: .3})
 }
 
 if (window.location.pathname == "/") {
