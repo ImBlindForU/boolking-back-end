@@ -36,6 +36,15 @@ class RegisteredUserController extends Controller
             'birthdate' => ['nullable', 'date', 'before:-18 years'],
             'email' => ['required', 'string', 'email:rfc,dns', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ],
+        [
+            'name.max' => 'Il nome non può superare 255 caratteri',
+            'surname.max' => 'Il cognome non può superare 255 caratteri',
+            'birthdate.before' => 'Per iscriverti devi essere maggiorenne',
+            'email.email' => 'Inserisci una email valida',
+            'email.unique' => "L'email è già stata usata",
+            'email.required' => "L'email è obbligatoria",
+            'password.required' => 'La password è obbligatoria'
         ]);
 
         $user = User::create([
