@@ -21,7 +21,7 @@
                     {{-- / IMAGE --}}
                 </div>
 
-                <h4>Additional Photos:</h4>
+                <h4>Foto aggiuntive:</h4>
                 <div id="img-show-div" class="d-flex flex-wrap  mb-4 align-center mx-auto justify-content-center">
                     @forelse ($estate->images as $image)
                         <img class="optional-img-show" src="{{ asset('storage/' . $image->path) }}"
