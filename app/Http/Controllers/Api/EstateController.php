@@ -96,8 +96,6 @@ class EstateController extends Controller
                     })
                     ->get();
         }
-
-
         
 
         return response()->json([
