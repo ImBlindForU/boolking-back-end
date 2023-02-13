@@ -21,6 +21,7 @@
                             <a href="{{ route('user.estates.index') }}" class="btn btn-danger">
                                 Visualizza le proprietà 
                             </a>
+                        
                         </div>
                     </div>
                 </div>
