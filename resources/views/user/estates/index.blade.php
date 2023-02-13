@@ -31,55 +31,6 @@
 
             <div class="col-12 col-md-12 col-lg-10 my-5" style="overflow-x: auto">
 
-                {{-- OPZIONE CARD --}}
-                <div class="cards-container my-5 d-flex flex-wrap">
-
-                    @forelse ($estates as $estate)
-                        <div class="estate-card col-12 col-md-6 col-lg-4">
-                            <div class="estate-img">
-                                <img src="{{ asset('storage/' . $estate->cover_img) }}" alt="" srcset="">
-                            </div>
-                            <div class="estate-txt">
-                                <div>
-                                    <h5>{{ $estate->title }}</h5>
-                                    <p>Tipologia: {{ $estate->type }}</p>
-                                    <p>&#x33A1;: {{ $estate->mq }}</p>
-                                    <p>Prezzo: {{ $estate->price }}</p>
-                                    <p>Visibile: {{ $estate->is_visible ? 'si' : 'no' }}</p>
-                                </div>
-                                <div class="estate-actions">
-                                    <a class="btn our-btn d-block mb-1 "
-                                        href="{{ route('user.estates.show', $estate->slug) }}">
-                                        <i class="fa-solid fa-magnifying-glass"></i>
-                                    </a>
-                                    <a class="btn our-btn d-block  mb-1 "
-                                        href="{{ route('user.estates.edit', $estate->slug) }}">
-                                        <i class="fa-solid fa-wrench"></i>
-                                    </a>
-                                    <form class="text-center" action="{{ route('user.estates.destroy', $estate->slug) }}"
-                                        method="POST">
-                                        @method('DELETE')
-                                        @csrf
-                                        <button class="btn our-btn delete-btn d-block w-100" type="submit"
-                                            button-name="{{ $estate->title }}">
-                                            <i class="fa-solid fa-trash-can"></i>
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-
-
-                        </div>
-                    @empty
-                        <div>
-                            <h4>Non sono ancora state caricate proprietà</h4>
-                        </div>
-                    @endforelse
-                </div>
-
-                {{-- OPZIONE CARD --}}
-
-
                 <table class="table table-hover">
                     <thead>
                         <tr>
@@ -98,16 +49,15 @@
                         <tr class="">
                             <th scope="row">{{ $estate->title }}</th>
                             <td class="w-25">
-                                <img style="width: 30vmin" src="{{ asset('storage/' . $estate->cover_img) }}"
-                                    alt="" srcset="">
+                                <img style="width: 30vmin" src="{{ asset('storage/' . $estate->cover_img) }}" alt=""
+                                    srcset="">
                             </td>
                             <td>{{ $estate->type }}</td>
                             <td>{{ $estate->mq }}</td>
                             <td>{{ $estate->price }}</td>
                             <td>{{ $estate->is_visible === 0 ? 'No' : 'Si' }}</td>
                             <td class="">
-                                <a class="btn our-btn d-block mb-1 "
-                                    href="{{ route('user.estates.show', $estate->slug) }}">
+                                <a class="btn our-btn d-block mb-1 " href="{{ route('user.estates.show', $estate->slug) }}">
                                     <i class="fa-solid fa-magnifying-glass"></i>
                                 </a>
                                 <a class="btn our-btn d-block  mb-1 "
