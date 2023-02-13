@@ -35,7 +35,7 @@ class EstateController extends Controller
             }
         }
 
-        if($request->has('street')){
+        if($request->has('street') || $request->has('city')){
             $street = $request->street;
             $city = $request->city;
 
@@ -46,10 +46,8 @@ class EstateController extends Controller
             $client = new \GuzzleHttp\Client(["verify" => false]);
             $response = $client->request('GET', $endpoint,);
             $tom_result = json_decode($response->getBody(), true);
-            if ($tom_result["summary"]["totalResults"] == 1) {
-                $long =  $tom_result['results'][0]['position']['lon'];
-                $lat =  $tom_result['results'][0]['position']['lat'];
-            }
+            $long =  $tom_result['results'][0]['position']['lon'];
+            $lat =  $tom_result['results'][0]['position']['lat'];
 
             $distance = $request->distance;
 
@@ -73,18 +71,34 @@ class EstateController extends Controller
                 foreach($addresses as $key => $address){
                     array_push($ids, $address['estate_id']);
                 }
-        }
 
 
-        $estates = Estate::with('images', 'services', 'address', 'user')
+                $estates = Estate::with('images', 'services', 'address', 'user')
+                ->where('is_visible', 1)
+                ->where('bed_number', '>=', $bed)
+                ->where('room_number', '>=', $room_number)
+                ->whereHas('services', function($q) use($services){
+                    $q->whereIn('id', $services);
+                })
+                ->whereHas('address', function($q) use($street, $city){
+                    $q->orWhere('street', 'LIKE', $street);
+                    $q->orWhere('city', 'LIKE', $city);
+                })
+                ->whereIn('id', $ids)
+                ->get();
+        } else {
+            $estates = Estate::with('images', 'services', 'address', 'user')
                     ->where('is_visible', 1)
                     ->where('bed_number', '>=', $bed)
                     ->where('room_number', '>=', $room_number)
                     ->whereHas('services', function($q) use($services){
                         $q->whereIn('id', $services);
                     })
-                    ->whereIn('id', $ids)
                     ->get();
+        }
+
+
+        
 
         return response()->json([
             'success' => true,
