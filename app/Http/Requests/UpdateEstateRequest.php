@@ -32,12 +32,12 @@ class UpdateEstateRequest extends FormRequest
             'street_code' => ['required', 'max:35'],
             'description' => ['nullable'],
             'type' => ['required'],
-            'room_number' => ['required'],
-            'bed_number' => ['required'],
-            'bathroom_number' => ['required'],
+            'room_number' => ['required','integer'],
+            'bed_number' => ['required','integer'],
+            'bathroom_number' => ['required','integer'],
             'detail' => ['nullable'],
             'price' => ['nullable'],
-            'mq' => ['nullable'],
+            'mq' => ['required','integer'],
             'cover_img' => ['nullable', 'max:550', 'image'],
             'images.*' => ['nullable', 'max:550', 'image'],
             'images' => ['max:4'],
@@ -70,7 +70,8 @@ class UpdateEstateRequest extends FormRequest
             'images.*.max' => "Le immagini non possono superare 550kb",
             'images.*.image' => "Le immagini devono essere un file di tipo immagine",
             'images.max' => 'Le immagini non possono essere più di 4',
-            'services.required' => 'Inserisci almeno un servizio'
+            'services.required' => 'Inserisci almeno un servizio',
+            'mq.required' => 'I metri quadri sono obbligatori'
         ];
     }
 }
