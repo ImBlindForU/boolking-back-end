@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\EstateController;
+use App\Http\Controllers\Api\ServiceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +21,4 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('estates', [EstateController::class, 'index']);
+Route::get('services', [ServiceController::class, 'index']);
