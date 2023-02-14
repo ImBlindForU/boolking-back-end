@@ -50,7 +50,7 @@ const submitBtn = document.getElementById('submit-btn');
 
 let placeholder = 0;
 
-checkboxServices.forEach((checkbox, index) => {
+checkboxServices.forEach((checkbox) => {
     if(checkbox.checked){
         placeholder++
     }
