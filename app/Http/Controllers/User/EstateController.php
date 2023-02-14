@@ -124,7 +124,11 @@ class EstateController extends Controller
     {
         $types = ['casa', 'appartamento', 'villa', 'attico', 'tenuta', 'mansarda', 'castello', 'stanza privata', 'masseria', 'baita'];
         $services = Service::all();
-        return view('user.estates.edit', compact('types', 'services', 'estate'));
+        if (Auth::user()->id === $estate->user_id) {
+            return view('user.estates.edit', compact('types', 'services', 'estate'));
+        } else {
+            return view('not-auth');
+        }
     }
 
     /**
