@@ -49,7 +49,7 @@
                         <tr class="table-row">
                             <th scope="row">{{ $estate->title }}</th>
                             <td class="w-25">
-                                <img style="width: 30vmin" src="{{ asset('storage/' . $estate->cover_img) }}" alt=""
+                                <img  src="{{ asset('storage/' . $estate->cover_img) }}" alt=""
                                     srcset="">
                             </td>
                             <td>{{ $estate->type }}</td>

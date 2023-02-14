@@ -234,7 +234,7 @@
 
             <div class="mb-3">
                 <label class="form-check-label" for="description">Descrizione</label>
-                <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description">{{ old('description') }}</textarea>
+                <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description">{{ old('description',$estate->description) }}</textarea>
 
                 @error('description')
                     <div class="invalid-feedback">
@@ -246,7 +246,7 @@
             <div class="mb-3">
                 <label for="price" class="form-label">Inserisci Prezzo</label>
                 <input class="form-control w-25 @error('price') is-invalid @enderror" type="number" min="0.01"
-                    step="0.01" max="3000" name="price" id="price" value="{{ old('price') }}" />
+                    step="0.01" max="3000" name="price" id="price" value="{{ old('price',$estate->price) }}" />
 
                 @error('price')
                     <div class="invalid-feedback">
