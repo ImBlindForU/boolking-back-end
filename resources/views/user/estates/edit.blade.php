@@ -216,6 +216,7 @@
 
             <div class="mb-3">
                 <div>Servizi (seleziona almeno una delle seguenti opzioni):</div>
+                <p id="service-error"></p>
 
                 {{-- @checked($errors->any() ? in_array($technology->id, old('technologies', [])) : $project->technologies->contains($technology)) --}}
 
@@ -223,7 +224,7 @@
 
                 @foreach ($services as $service)
                     <div class="mb-1 form-check">
-                        <input type="checkbox" class="form-check-input" id="service-{{ $service->id }}"
+                        <input type="checkbox" class="form-check-input services-check" id="service-{{ $service->id }}"
                             value="{{ $service->id }}" name="services[]" @checked($errors->any() ? in_array($service->id, old('services', [])) : $estate->services->contains($service))>
                         <label class="form-check-label" for="service-{{ $service->id }}">{{ $service->name }}</label>
                     </div>
@@ -256,7 +257,7 @@
             </div>
 
             <div>
-                <button type="submit" class="btn our-btn-header">Aggiorna proprietà</button>
+                <button id="submit-btn" type="submit" class="btn our-btn-header">Aggiorna proprietà</button>
                 <button type="reset" class="btn our-btn-header">Resetta i campi</button>
             </div>
         </form>

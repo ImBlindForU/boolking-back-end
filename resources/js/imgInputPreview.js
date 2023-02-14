@@ -44,7 +44,36 @@ if (optionalImgs && optionalWrapper) {
     });
 }
 
+//Checkbox validation
+const checkboxServices = document.querySelectorAll('.services-check');
+const submitBtn = document.getElementById('submit-btn');
 
+let placeholder = 0;
+
+checkboxServices.forEach((checkbox, index) => {
+    if(checkbox.checked){
+        placeholder++
+    }
+    checkbox.addEventListener('change', function(){
+        if(checkbox.checked){
+            placeholder++
+        } else {
+            placeholder--
+        }
+    })
+})
+
+const serviceError = document.getElementById('service-error')
+
+submitBtn.addEventListener('click', (event)=>{
+    if(placeholder === 0){
+        event.preventDefault();
+        serviceError.innerHTML = 'Inserisci almeno un servizio';
+        serviceError.style.color = 'red';
+    } else {
+        serviceError.innerHTML = "";
+    }
+})
 
 
 // FUNCTIONS

@@ -17,7 +17,7 @@
             <div class="mb-3">
                 <label for="title" class="form-label">Titolo*</label>
                 <input type="text" class="form-control @error('title') is-invalid @enderror" id="title"
-                    name="title" value="{{ old('title') }}">
+                    name="title" value="{{ old('title') }}" required>
 
                 @error('title')
                     <div class="invalid-feedback">
@@ -32,7 +32,7 @@
 
                 <div class="mb-3 me-md-2" id="address-input-div">
                     <label for="street" class="form-label">Indirizzo *</label>
-                    <input class="form-control @error('street') is-invalid @enderror" id="street" type="text" name="street" value="{{ old('street')}}">
+                    <input class="form-control @error('street') is-invalid @enderror" id="street" type="text" name="street" value="{{ old('street')}}" required>
                     @error('street')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -41,7 +41,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="street_code" class="form-label">Numero civico *</label>
-                    <input class="form-control @error('street_code') is-invalid @enderror" id="street_code" type="text" name="street_code" value="{{ old('street_code')}}">
+                    <input class="form-control @error('street_code') is-invalid @enderror" id="street_code" type="text" name="street_code" value="{{ old('street_code')}}" required>
                     @error('street_code')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -54,7 +54,7 @@
 
             <div class="mb-3 me-md-2 city-country-input-div">
                 <label for="city" class="form-label">Città *</label>
-                <input class="form-control @error('city') is-invalid @enderror" id="city" type="text" name="city" value="{{ old('city')}}">
+                <input class="form-control @error('city') is-invalid @enderror" id="city" type="text" name="city" value="{{ old('city')}}" required>
                 @error('city')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -64,7 +64,7 @@
 
             <div class="mb-3 city-country-input-div">
                 <label for="country" class="form-label">Paese *</label>
-                <input class="form-control @error('country') is-invalid @enderror" id="country" type="text" name="country" value="{{ old('country')}}">
+                <input class="form-control @error('country') is-invalid @enderror" id="country" type="text" name="country" value="{{ old('country')}}" required>
                 @error('country')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -78,7 +78,7 @@
             <div class="mb-3 me-md-2 flex-md-grow-1">
                 <label for="room_number" class="form-label">Numero di stanze*</label>
                 <input type="number" min="1" class="form-control @error('room_number') is-invalid @enderror"
-                    id="room_number" name="room_number" value="{{ old('room_number') }}">
+                    id="room_number" name="room_number" value="{{ old('room_number') }}" required>
 
                 @error('room_number')
                     <div class="invalid-feedback">
@@ -90,7 +90,7 @@
             <div class="mb-3 me-md-2 flex-md-grow-1">
                 <label for="bed_number" class="form-label">Numero di letti*</label>
                 <input type="number" min="1" class="form-control @error('bed_number') is-invalid @enderror"
-                    id="bed_number" name="bed_number" value="{{ old('bed_number') }}">
+                    id="bed_number" name="bed_number" value="{{ old('bed_number') }}" required>
 
                 @error('bed_number')
                     <div class="invalid-feedback">
@@ -102,7 +102,7 @@
             <div class="mb-3 me-md-2 flex-md-grow-1">
                 <label for="bathroom_number" class="form-label">Numero di bagni*</label>
                 <input type="number" min="1" class="form-control @error('bathroom_number') is-invalid @enderror"
-                    id="bathroom_number" name="bathroom_number" value="{{ old('bathroom_number') }}">
+                    id="bathroom_number" name="bathroom_number" value="{{ old('bathroom_number') }}" required>
 
                 @error('bathroom_number')
                     <div class="invalid-feedback">
@@ -114,7 +114,7 @@
             <div class="mb-3  flex-md-grow-1">
                 <label for="mq" class="form-label">Metri quadri*</label>
                 <input type="number" min="1" class="form-control @error('mq') is-invalid @enderror" id="mq"
-                    name="mq" value="{{ old('mq') }}">
+                    name="mq" value="{{ old('mq') }}" required>
 
                 @error('mq')
                     <div class="invalid-feedback">
@@ -142,7 +142,7 @@
             <div class="mb-3">
                 <label for="cover_img" class="form-label">Immagine di copertina*</label>
                 <input type="file" class="form-control @error('cover_img') is-invalid @enderror" id="cover_img"
-                    name="cover_img">
+                    name="cover_img" required>
 
                 <div class="my-5  text-center"  >
                     <img class="rounded-4" id="image_preview" style="max-height: 300px"  src="" alt="">
@@ -188,8 +188,8 @@
             </div>
 
             <div class="mb-3">
-                <select name="type" id="type" class="form-select w-25 @error('type') is-invalid @enderror">
-                    <option value="">Scegli la tipologia di proprietà</option>
+                <select name="type" id="type" class="form-select w-25 @error('type') is-invalid @enderror" required>
+                    <option value="">Scegli la tipologia di proprietà *</option>
                     @foreach ($types as $type)
                         <option value="{{ $type }}" @selected(old('type') == $type)>{{ $type }}</option>
                     @endforeach
@@ -204,18 +204,20 @@
 
             <div class="mb-3">
                 <div class="mb-2 @error('services') is-invalid @enderror">Servizi (seleziona almeno una delle seguenti opzioni):</div>
-                
+                <p id="service-error"></p>
+
                 @error('services')
-                <div class="invalid-feedback mb-2">
-                    {{ $message }}
-                </div>
-            @enderror
+                    <div class="invalid-feedback mb-2">
+                        {{ $message }}
+                    </div>
+                @enderror
+                
                 <div class="d-md-flex flex-md-column flex-md-wrap" id="services-input-div">
 
                     @foreach ($services as $service)
                     
                     <div class="mb-1 form-check">
-                        <input type="checkbox" class="form-check-input" id="service-{{ $service->id }}"
+                        <input type="checkbox" class="form-check-input services-check" id="service-{{ $service->id }}"
                         value="{{ $service->id }}" name="services[]" @checked(in_array($service->id, old('services', [])))>
                         <label class="form-check-label" for="service-{{ $service->id }}">{{ $service->name }}</label>
                     </div>
@@ -247,7 +249,7 @@
             </div>
 
             <div>
-                <button type="submit" class="btn our-btn-header">Inserisci proprietà</button>
+                <button id="submit-btn" type="submit" class="btn our-btn-header">Inserisci proprietà</button>
                 <button type="reset" class="btn our-btn-header">Resetta i campi</button>
             </div>
         </form>
