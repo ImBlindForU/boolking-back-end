@@ -54,7 +54,7 @@
                 <a href="">Messaggi</a>
                 <a href="">Statistiche</a>
                 <a href="">Sponsorships</a>
-                <a href="{{ route('homeFront') }}">HomePage appartamenti</a>
+                <a href="{{ route('homeFront') }}">Torna al sito</a>
             </div>
         </div>
     </div>
