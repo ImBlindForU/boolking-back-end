@@ -45,11 +45,21 @@ class EstateController extends Controller
             $client = new \GuzzleHttp\Client(["verify" => false]);
             $response = $client->request('GET', $endpoint,);
             $tom_result = json_decode($response->getBody(), true);
+            
+            //if Tom tom can not find any street: 
+            if(count($tom_result['results']) === 0){
+                return response()->json([
+                    'success' => false,
+                    'results' => 'La via inserita non ha prodotto risultati',
+                ]);
+            }
+
             $long =  $tom_result['results'][0]['position']['lon'];
             $lat =  $tom_result['results'][0]['position']['lat'];
 
             $distance = $request->distance;
 
+            // Create the query calculating the radius
             $haversine = "(
                 6371 * acos(
                     cos(radians(" .$lat. "))
@@ -58,7 +68,8 @@ class EstateController extends Controller
                     + sin(radians(" .$lat. ")) * sin(radians(`lat`))
                 )
             )";
-
+            
+            //Take all the address id in the given distance
             $addresses = Address::select("estate_id")
                 ->selectRaw("round($haversine, 2) AS distance")
                     ->having("distance", "<=", $distance)
@@ -67,6 +78,7 @@ class EstateController extends Controller
                 
                 
             $ids = [];
+            
                 foreach($addresses as $key => $address){
                     array_push($ids, $address['estate_id']);
                 }
