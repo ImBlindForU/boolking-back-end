@@ -4,6 +4,9 @@ const passwordMessage = document.getElementById('password-message');
 const birthdate = document.getElementById('birthdate');
 const registerBtn = document.getElementById('register-btn');
 const errorDate = document.getElementById('error-date');
+const emailInput = document.getElementById('email');
+const emailError = document.getElementById('email-error')
+
 
 if (password && passwordConfirm && passwordMessage) {
     passwordConfirm.addEventListener("input", function () {
@@ -19,17 +22,22 @@ if (password && passwordConfirm && passwordMessage) {
 
 let now = new Date().getFullYear();
 let validDate = now - 18;
-console.log(validDate);
 
 if (registerBtn) {
     registerBtn.addEventListener('click', function (event) {
         if (parseInt(birthdate.value) > validDate) {
             event.preventDefault();
-            //birthdate.setAttribute('max', now);
             errorDate.innerHTML = 'Devi essere maggiorenne per poterti iscrivere';
             errorDate.style.color = 'red';
         }
-        //console.log(parseInt(birthdate.value));
+
+        let emailValue = emailInput.value;
+
+        if(!(emailValue.includes('@') && emailValue.includes('.'))){
+            event.preventDefault();
+            emailError.innerHTML = 'Inserisci una mail valida';
+            emailError.style.color = 'red';
+        }
     })
 }
 

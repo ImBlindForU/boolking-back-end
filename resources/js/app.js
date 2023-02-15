@@ -5,9 +5,9 @@ import.meta.glob([
     '../img/**'
 ])
 
-import './confirmPasswordValidation';
+import './createUpdateValidation';
 import './welcomeAnimation';
-import './imgInputPreview';
+import './registerValidation';
 import './modal';
 
 
