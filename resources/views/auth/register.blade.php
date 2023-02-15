@@ -52,6 +52,10 @@
                                         class="form-control @error('birthdate') is-invalid @enderror" name="birthdate"
                                         value="{{ old('birthdate') }}" autocomplete="birthdate" autofocus>
 
+                                    <p id="error-date">
+
+                                    </p>
+
                                     @error('birthdate')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -67,7 +71,7 @@
                                 <div class="col-md-6">
                                     <input id="email" type="email"
                                         class="form-control @error('email') is-invalid @enderror" name="email"
-                                        value="{{ old('email') }}" required autocomplete="email">
+                                        value="{{ old('email') }}" required autocomplete="email" required>
 
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
@@ -96,7 +100,7 @@
 
                             <div class="mb-4 row">
                                 <label for="password-confirm"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Conferma Password') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Conferma Password *') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control"
@@ -108,7 +112,7 @@
 
                             <div class="mb-4 row mb-0">
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
+                                    <button id="register-btn" type="submit" class="btn btn-primary">
                                         {{ __('Registrati') }}
                                     </button>
                                 </div>
