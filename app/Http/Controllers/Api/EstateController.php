@@ -116,10 +116,17 @@ class EstateController extends Controller
     }
 
     public function show($slug){
-        $estate = Estate::with('images', 'services', 'address', 'user')->where('slug', $slug)->get();
-        return response()->json([
-            'success' => true,
-            'results' => $estate
-        ]);
+        $estate = Estate::with('images', 'services', 'address', 'user')->where('slug', $slug)->first();
+        if($estate){
+            return response()->json([
+                'success' => true,
+                'results' => $estate
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'error' => 'Nessun appartamento trovato'
+            ]);
+        }
     }
 }
