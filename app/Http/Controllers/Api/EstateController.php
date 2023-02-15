@@ -78,7 +78,7 @@ class EstateController extends Controller
                 
                 
             $ids = [];
-            
+
                 foreach($addresses as $key => $address){
                     array_push($ids, $address['estate_id']);
                 }
@@ -112,6 +112,14 @@ class EstateController extends Controller
         return response()->json([
             'success' => true,
             'results' => $estates,
+        ]);
+    }
+
+    public function show($slug){
+        $estate = Estate::with('images', 'services', 'address', 'user')->where('slug', $slug)->get();
+        return response()->json([
+            'success' => true,
+            'results' => $estate
         ]);
     }
 }

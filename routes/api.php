@@ -22,3 +22,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('estates', [EstateController::class, 'index']);
 Route::get('services', [ServiceController::class, 'index']);
+Route::get('estates/{estate}', [EstateController::class, 'show']);
