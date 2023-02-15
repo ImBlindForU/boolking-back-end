@@ -29,6 +29,7 @@ class StoreEstateRequest extends FormRequest
             'city' => ['required', 'max:255'],
             'country' => ['required', 'max:255'],
             'street_code' => ['required', 'max:35'],
+            'cap' => ['required', 'numeric'],
             'description' => ['nullable'],
             'type' => ['required'],
             'room_number' => ['required','integer'],

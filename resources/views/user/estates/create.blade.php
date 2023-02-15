@@ -63,6 +63,16 @@
             </div>
 
             <div class="mb-3 city-country-input-div">
+                <label for="cap" class="form-label">Cap *</label>
+                <input class="form-control @error('country') is-invalid @enderror" id="cap" type="number" min="1" name="cap" value="{{ old('cap')}}" required>
+                @error('cap')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+
+            <div class="mb-3 city-country-input-div">
                 <label for="country" class="form-label">Paese *</label>
                 <input class="form-control @error('country') is-invalid @enderror" id="country" type="text" name="country" value="{{ old('country')}}" required>
                 @error('country')

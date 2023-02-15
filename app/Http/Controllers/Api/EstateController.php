@@ -38,11 +38,10 @@ class EstateController extends Controller
         if($request->has('street') || $request->has('city')){
             $street = $request->street;
             $city = $request->city;
-
             // Call TomTom API and get address Lat and Long
             $tomKey = env('MYTOMTOMKEY');
             $geocodeUrl = env('URLGEOCODE');
-            $endpoint = $geocodeUrl . $street . "," . $city . ".json?key=" . $tomKey;
+            $endpoint = $geocodeUrl . $street . "," . $city . "," . ".json?key=" . $tomKey;
             $client = new \GuzzleHttp\Client(["verify" => false]);
             $response = $client->request('GET', $endpoint,);
             $tom_result = json_decode($response->getBody(), true);

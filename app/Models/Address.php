@@ -9,7 +9,7 @@ class Address extends Model
 {
     use HasFactory;
 
-    protected $fillable =['street','long','lat','city','country','street_code','estate_id'];
+    protected $fillable =['street','long','lat','city','cap' ,'country','street_code','estate_id'];
 
     public function estate(){
         return $this->belongsTo(Estate::class);

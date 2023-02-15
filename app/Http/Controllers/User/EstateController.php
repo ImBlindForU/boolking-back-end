@@ -49,10 +49,6 @@ class EstateController extends Controller
     {
         $form_data = $request->validated();
 
-        // $street = $form_data['street'];
-        // $street_code = $form_data['street_code'];
-        // $city = $form_data['city'];
-
         $form_data['slug'] = Helpers::generateSlug($form_data['title']);
         $path = Storage::put('cover', $request->cover_img);
         $form_data['cover_img'] = $path;
@@ -71,18 +67,18 @@ class EstateController extends Controller
         $tomKey = env('MYTOMTOMKEY');
         $geocodeUrl = env('URLGEOCODE');
 
-        $endpoint = $geocodeUrl . $form_data['street'] . "," . $form_data['street_code'] . "," . $form_data['city'] . ".json?key=" . $tomKey;
+        $endpoint = $geocodeUrl . $form_data['street'] . "," . $form_data['street_code'] . "," . $form_data['city']  . "," . $form_data['cap'] . ".json?key=" . $tomKey;
         $client = new \GuzzleHttp\Client(["verify" => false]);
 
         $response = $client->request('GET', $endpoint,);
         $tom_result = json_decode($response->getBody(), true);
         if ($tom_result["summary"]["totalResults"] == 1) {
-            // $form_data['estate_id'] = $new_estate->id;
+            
             $form_data['estate_id'] = $new_estate->id;
             $form_data['long'] =  $tom_result['results'][0]['position']['lon'];
             $form_data['lat'] =  $tom_result['results'][0]['position']['lat'];
             $new_address = Address::create($form_data);
-            // $new_estate->address()->update($address_data);
+
         } else {
             $new_estate->update(["is_visible" => 0]);
             return redirect()->route('user.estates.index')->with("wrong_address", "L'indirizzo di $new_estate->title sembra essere sbagliato, per rendere l'annuncio visibile inserisci un indirizzo valido");
@@ -173,13 +169,14 @@ class EstateController extends Controller
             'street' => $form_data['street'],
             'city' => $form_data['city'],
             'country' => $form_data['country'],
-            'street_code' => $form_data['street_code']
+            'street_code' => $form_data['street_code'],
+            'cap' => $form_data['cap']
         ];
 
         /* Call Tom Tom Api */
         $tomKey = env('MYTOMTOMKEY');
         $geocodeUrl = env('URLGEOCODE');
-        $endpoint = $geocodeUrl . $address_data['street'] . "," . $address_data['street_code'] . "," . $address_data['city'] . ".json?key=" . $tomKey;
+        $endpoint = $geocodeUrl . $address_data['street'] . "," . $address_data['street_code'] . "," . $address_data['city']  . "," . $address_data['cap'] . ".json?key=" . $tomKey;
         $client = new \GuzzleHttp\Client(["verify" => false]);
 
         $response = $client->request('GET', $endpoint,);
