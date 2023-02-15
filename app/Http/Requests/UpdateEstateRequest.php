@@ -59,6 +59,8 @@ class UpdateEstateRequest extends FormRequest
             'city.max' => "La città può avere al massimo 255 caratteri",
             'country.required' => "Il paese è obbligatorio",
             'country.max' => "Il paese può avere al massimo 255 caratteri",
+            'cap.required' => "Il cap è obbligatorio",
+            'cap.numeric' => 'Il cap può essere solo un valore numerico',
             'street_code.required' => "Il numero civico è obbligatorio",
             'street_code.max' => "Il numero civico può avere al massimo 255 caratteri",
             'type.required' => 'La tipologia è obbligatoria',
