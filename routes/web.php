@@ -36,7 +36,7 @@ Route::middleware(['auth', 'verified'])->name('user.')->prefix('/user')->group(f
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('estates', EstateController::class)->parameters(['estates' => 'estate:slug']);
     Route::get('transactions/{estates}', [TransactionController::class, 'index'])->name('transaction.index');
-    Route::post('transactions/process', [TransactionController::class, 'process'])->name('transaction.process');
+    Route::post('transactions/process/{estates}', [TransactionController::class, 'process'])->name('transaction.process');
 });
 
 
