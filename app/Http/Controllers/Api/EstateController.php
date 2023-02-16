@@ -88,26 +88,25 @@ class EstateController extends Controller
                 ->where('is_visible', 1)
                 ->where('bed_number', '>=', $bed)
                 ->where('room_number', '>=', $room_number)
-                ->whereHas('services', function ($q) use ($services) {
-                    $q->whereIn('id', $services);
-                }, "=", count($services))->with('services')
                 ->whereIn('id', $ids)
-                ->get();
-        } else {
-            $estates = Estate::with('images', 'address', 'user')
-                    ->where('is_visible', 1)
-                    ->where('bed_number', '>=', $bed)
-                    ->where('room_number', '>=', $room_number)
-                    ->whereHas('services', function ($q) use ($services) {
-                        $q->whereIn('id', $services);
-                    }, "=", count($services))->with('services')
-                    ->get();
-        }
-        
+                ;
+
+            } else {
+                $estates = Estate::with('images', 'address', 'user')
+                ->where('is_visible', 1)
+                ->where('bed_number', '>=', $bed)
+                ->where('room_number', '>=', $room_number);
+            }
+            
+            if($request->has('services')){
+                $estates->whereHas('services', function ($q) use ($services) {
+                    $q->whereIn('id', $services);
+                }, "=", count($services))->with('services')->get();
+            }
 
         return response()->json([
             'success' => true,
-            'results' => $estates,
+            'results' => $estates->get(),
         ]);
     }
 
