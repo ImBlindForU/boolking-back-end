@@ -58,7 +58,7 @@
 
             <div class="d-flex flex-column flex-md-row">
 
-                <div class="mb-3 me-md-2 city-country-input-div">
+                <div class="mb-3 city-country-input-div">
                     <label for="city" class="form-label">Città*</label>
                     <input class="form-control @error('city') is-invalid @enderror" id="city" type="text"
                         name="city" value="{{ old('city', $estate->address?->city) }}">
@@ -69,7 +69,7 @@
                     @enderror
                 </div>
 
-                <div class="mb-3 city-country-input-div">
+                <div class="mb-3 mx-md-2 city-country-input-div">
                     <label for="cap" class="form-label">Cap*</label>
                     <input class="form-control @error('country') is-invalid @enderror" id="cap" type="number"
                         min="1" name="cap" value="{{ old('cap', $estate->address?->cap) }}" required>
