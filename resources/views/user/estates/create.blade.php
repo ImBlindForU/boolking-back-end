@@ -260,7 +260,7 @@
 
             <div>
                 <button id="submit-btn" type="submit" class="btn our-btn-header">Inserisci proprietà</button>
-                <button type="reset" class="btn our-btn-header">Resetta i campi</button>
+                <button type="reset" class="btn our-btn">Resetta i campi</button>
             </div>
         </form>
 
