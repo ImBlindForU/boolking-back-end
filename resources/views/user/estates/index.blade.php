@@ -64,7 +64,7 @@
                                     href="{{ route('user.estates.edit', $estate->slug) }}">
                                     <i class="fa-solid fa-wrench"></i>
                                 </a>
-                                <form class="text-center" action="{{ route('user.estates.destroy', $estate->slug) }}"
+                                <form class="text-center mb-1" action="{{ route('user.estates.destroy', $estate->slug) }}"
                                     method="POST">
                                     @method('DELETE')
                                     @csrf
@@ -73,6 +73,10 @@
                                         <i class="fa-solid fa-trash-can"></i>
                                     </button>
                                 </form>
+
+                                <a href="{{ route('user.transaction.index', $estate->id) }}" class="btn our-btn d-block">
+                                    <i class="fa-solid fa-hand-holding-dollar"></i>
+                                </a>
                             </td>
                         </tr>
                     @empty

@@ -4,6 +4,7 @@ use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\DashboardController;
 use App\Http\Controllers\User\EstateController;
+use App\Http\Controllers\User\TransactionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,7 +35,9 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'verified'])->name('user.')->prefix('/user')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('estates', EstateController::class)->parameters(['estates' => 'estate:slug']);
+    Route::get('transactions/{estates}', [TransactionController::class, 'index'])->name('transaction.index');
 });
+
 
 Route::get('front', [FrontEndController::class, 'index'])->name('homeFront');
 
