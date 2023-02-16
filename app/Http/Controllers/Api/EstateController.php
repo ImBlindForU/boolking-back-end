@@ -35,6 +35,11 @@ class EstateController extends Controller
             }
         }
 
+        $estates = Estate::with('images', 'address', 'user')
+                ->where('is_visible', 1)
+                ->where('bed_number', '>=', $bed)
+                ->where('room_number', '>=', $room_number);
+
         if($request->has('street') || $request->has('city')){
             $street = $request->street;
             $city = $request->city;
@@ -71,7 +76,7 @@ class EstateController extends Controller
             
             //Take all the address id in the given distance
             $addresses = Address::select("estate_id")
-                ->selectRaw("round($haversine, 2) AS distance")
+                    ->selectRaw("round($haversine, 2) AS distance")
                     ->having("distance", "<=", $distance)
                     ->get()
                     ->toArray();
@@ -79,24 +84,13 @@ class EstateController extends Controller
                 
             $ids = [];
 
-                foreach($addresses as $key => $address){
-                    array_push($ids, $address['estate_id']);
-                }
-
-
-                $estates = Estate::with('images', 'address', 'user')
-                ->where('is_visible', 1)
-                ->where('bed_number', '>=', $bed)
-                ->where('room_number', '>=', $room_number)
-                ->whereIn('id', $ids)
-                ;
-
-            } else {
-                $estates = Estate::with('images', 'address', 'user')
-                ->where('is_visible', 1)
-                ->where('bed_number', '>=', $bed)
-                ->where('room_number', '>=', $room_number);
+            foreach($addresses as $key => $address){
+                array_push($ids, $address['estate_id']);
             }
+
+
+            $estates->whereIn('id', $ids)->get();
+        }
             
             if($request->has('services')){
                 $estates->whereHas('services', function ($q) use ($services) {
