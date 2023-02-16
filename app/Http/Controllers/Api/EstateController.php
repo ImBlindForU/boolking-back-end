@@ -88,15 +88,16 @@ class EstateController extends Controller
                 array_push($ids, $address['estate_id']);
             }
 
-
+            //Search all the estates with the given address
             $estates->whereIn('id', $ids)->get();
         }
-            
-            if($request->has('services')){
-                $estates->whereHas('services', function ($q) use ($services) {
-                    $q->whereIn('id', $services);
-                }, "=", count($services))->with('services')->get();
-            }
+        
+        //If request has services, do the query and search it
+        if($request->has('services')){
+            $estates->whereHas('services', function ($q) use ($services) {
+                $q->whereIn('id', $services);
+            }, "=", count($services))->with('services')->get();
+        }
 
         return response()->json([
             'success' => true,
