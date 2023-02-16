@@ -94,7 +94,7 @@ class EstateController extends Controller
                 ->whereIn('id', $ids)
                 ->get();
         } else {
-            $estates = Estate::with('images', 'services', 'address', 'user')
+            $estates = Estate::with('images', 'address', 'user')
                     ->where('is_visible', 1)
                     ->where('bed_number', '>=', $bed)
                     ->where('room_number', '>=', $room_number)
