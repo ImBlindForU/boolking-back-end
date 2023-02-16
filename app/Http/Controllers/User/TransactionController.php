@@ -57,9 +57,6 @@ class TransactionController extends Controller
             }
         }
         
-        
-
-        
         $gateway = new Gateway([
             'environment' => 'sandbox',
             'merchantId' => env('BRAINTREE_MERCHANT_ID'),
@@ -76,12 +73,14 @@ class TransactionController extends Controller
             ]);
             
         if(count($estate_sponsor) === 0){
+            
             $estate->sponsors()->attach([ $sponsor->id => [
                 'estate_id' => $estate->id,
                 'start_date' => $start,
                 'end_date' => $end
                 ]
             ]);
+
         } else {
             if($placeholder){
                 $estate->sponsors()->syncWithoutDetaching([ $sponsor->id => [
