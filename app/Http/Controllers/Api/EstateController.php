@@ -84,17 +84,13 @@ class EstateController extends Controller
                 }
 
 
-                $estates = Estate::with('images', 'services', 'address', 'user')
+                $estates = Estate::with('images', 'address', 'user')
                 ->where('is_visible', 1)
                 ->where('bed_number', '>=', $bed)
                 ->where('room_number', '>=', $room_number)
-                ->whereHas('services', function($q) use($services){
+                ->whereHas('services', function ($q) use ($services) {
                     $q->whereIn('id', $services);
-                })
-                ->whereHas('address', function($q) use($street, $city){
-                    $q->orWhere('street', 'LIKE', $street);
-                    $q->orWhere('city', 'LIKE', $city);
-                })
+                }, "=", count($services))->with('services')
                 ->whereIn('id', $ids)
                 ->get();
         } else {
@@ -102,9 +98,9 @@ class EstateController extends Controller
                     ->where('is_visible', 1)
                     ->where('bed_number', '>=', $bed)
                     ->where('room_number', '>=', $room_number)
-                    ->whereHas('services', function($q) use($services){
+                    ->whereHas('services', function ($q) use ($services) {
                         $q->whereIn('id', $services);
-                    })
+                    }, "=", count($services))->with('services')
                     ->get();
         }
         
