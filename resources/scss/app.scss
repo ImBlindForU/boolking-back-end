@@ -259,3 +259,16 @@ h4{
 .form-check-input[type=checkbox]  {
     border-radius: 50%;
 }
+
+input[type=file]::file-selector-button {
+    border-radius: .2em;
+    background-color: #ff5a60;
+    color: white;
+    transition: 125ms;
+    &:hover{
+         background-color: green;
+
+    }   
+  }
+
+  
