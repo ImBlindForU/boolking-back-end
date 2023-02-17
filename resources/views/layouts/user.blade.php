@@ -51,7 +51,7 @@
             <div class="side-bar-links d-flex flex-column">
                 <a href="{{ route('user.dashboard') }}">Dashboard</a>
                 <a href="{{ route('user.estates.index') }}">Proprietà</a>
-                <a href="">Messaggi</a>
+                <a href="{{ route('user.leads.index') }}">Messaggi</a>
                 <a href="">Statistiche</a>
                 <a href="">Sponsorships</a>
                 <a href="{{ route('homeFront') }}">Torna al sito</a>
