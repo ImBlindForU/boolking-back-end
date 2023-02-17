@@ -67,28 +67,29 @@
                                     </button>
                                     <ul class="more-button-list d-flex flex-wrap">
                                         <li class="more-button-list-item">
-                                          <span><a class=" padding-btn d-block mb-1 " href="{{ route('user.estates.show', $estate->slug) }}">
-                                            <i class="fa-solid fa-magnifying-glass"></i>
-                                            
-                                        </a></span>
-                                        </li>
-                                        <li class="more-button-list-item">
-                                          <span><a class="padding-btn d-block  mb-1 "
-                                            href="{{ route('user.estates.edit', $estate->slug) }}">
-                                            <i class="fa-solid fa-wrench"></i>
+                                          <span>
+                                            <a class=" padding-btn d-block mb-1 " href="{{ route('user.estates.show', $estate->slug) }}">
+                                                <i class="fa-solid fa-magnifying-glass"></i>
                                             </a>
                                         </span>
                                         </li>
                                         <li class="more-button-list-item">
-                                          <span><form class=" mb-1" action="{{ route('user.estates.destroy', $estate->slug) }}"
-                                            method="POST">
+                                          <span>
+                                            <a class="padding-btn d-block  mb-1 " href="{{ route('user.estates.edit', $estate->slug) }}">
+                                                <i class="fa-solid fa-wrench"></i>
+                                            </a>
+                                        </span>
+                                        </li>
+                                        <li class="more-button-list-item">
+                                          <span>
+                                            <form class=" mb-1" action="{{ route('user.estates.destroy', $estate->slug) }}" method="POST">
                                             @method('DELETE')
                                             @csrf
-                                            <a type="submit" class="padding-btn d-block delete-btn" type="submit"
-                                                button-name="{{ $estate->title }}">
-                                                <i class="fa-solid fa-trash-can"></i>
-                                            </a>
-                                        </form>
+                                                <a type="submit" class="padding-btn d-block delete-btn" type="submit"
+                                                    button-name="{{ $estate->title }}">
+                                                    <i class="fa-solid fa-trash-can"></i>
+                                                </a>
+                                            </form>
                                         </span>
                                         </li>
                                         <li class="more-button-list-item">
@@ -97,34 +98,10 @@
                                                     <i class="fa-solid fa-hand-holding-dollar"></i>
                                                 </a>
                                             </span>
-                                          </li>
-                                      </d>
+                                        </li>
                                     </div>
                                 </div>
                             </td>
-                            
-                            {{-- <td class="">
-                                <a class="btn our-btn d-block mb-1 " href="{{ route('user.estates.show', $estate->slug) }}">
-                                    <i class="fa-solid fa-magnifying-glass"></i>
-                                </a>
-                                <a class="btn our-btn d-block  mb-1 "
-                                    href="{{ route('user.estates.edit', $estate->slug) }}">
-                                    <i class="fa-solid fa-wrench"></i>
-                                </a>
-                                <form class="text-center mb-1" action="{{ route('user.estates.destroy', $estate->slug) }}"
-                                    method="POST">
-                                    @method('DELETE')
-                                    @csrf
-                                    <button class="btn our-btn delete-btn d-block w-100" type="submit"
-                                        button-name="{{ $estate->title }}">
-                                        <i class="fa-solid fa-trash-can"></i>
-                                    </button>
-                                </form>
-
-                                <a href="{{ route('user.transaction.index', $estate->id) }}" class="btn our-btn d-block">
-                                    <i class="fa-solid fa-hand-holding-dollar"></i>
-                                </a>
-                            </td> --}}
                         </tr>
                     @empty
                         <tr>
