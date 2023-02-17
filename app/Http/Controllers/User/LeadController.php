@@ -23,9 +23,6 @@ class LeadController extends Controller
             }
         }
 
-        //dd($estatesFiltered);
-        //$leads = Lead::all()->whereIn('estate_id', $estatesFiltered->id);
-        //dd($leads);
         return view('user.emails.index', compact('leads'));
     }
 }

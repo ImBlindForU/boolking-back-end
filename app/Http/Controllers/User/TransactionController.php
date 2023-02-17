@@ -8,11 +8,16 @@ use App\Models\Sponsor;
 use Illuminate\Http\Request;
 use Braintree\Gateway;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class TransactionController extends Controller
 {
     public function index($id){
         $estate = Estate::findOrFail($id);
+
+        if (Auth::user()->id !== $estate->user_id) {
+            return view('not-auth');
+        }
 
         $gateway = new Gateway([
             'environment' => 'sandbox',
@@ -30,6 +35,9 @@ class TransactionController extends Controller
 
     public function process(Request $request, $id){
         $payment_method_nonce = $request->payment_method_nonce;
+        $sponsor_validation = $request->validate([
+            'sponsors' => 'exists:sponsors,id'
+        ]);
         $sponsor = Sponsor::find($request->sponsors);
         $estate = Estate::findOrFail($id);
 
