@@ -48,10 +48,10 @@
                     <div class="estate-details col-12 col-md-3 ">
                         <p><span>&#x33A1;:</span> {{ $estate->mq }}</p>
 
-                        <p> <span>Tipologia:</span>{{ $estate->address?->type }} </p>
-                        <p><span>Stanze:</span> {{ $estate->address?->room_number }}</p>
-                        <p><span>Camere:</span>{{ $estate->address?->bed_number }} </p>
-                        <p><span>Bagni:</span> {{ $estate->address?->bathroom_number }}</p>
+                        <p> <span>Tipologia:</span>{{ $estate->type }} </p>
+                        <p><span>Stanze:</span> {{ $estate->room_number }}</p>
+                        <p><span>Camere:</span>{{ $estate->bed_number }} </p>
+                        <p><span>Bagni:</span> {{ $estate->bathroom_number }}</p>
                     </div>
                 </div>
                 <dl style="">
