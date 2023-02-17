@@ -1,28 +1,17 @@
+const menuButtons = document.querySelectorAll('.more-button');
 
-const queryAll = document.querySelectorAll('.more-button');
-console.log(queryAll);
+const menuWrappers = document.querySelectorAll('.list-container');
 
-const queryAllptDue = document.querySelectorAll('.list-container');
-queryAll.forEach((query, index) => {
-   query.addEventListener('click', function () {
-    queryAllptDue[index].classList.toggle('active');
+menuButtons.forEach((button, index) => {
+   button.addEventListener('click', function (e) {
+        e.stopPropagation();
+        menuWrappers[index].classList.toggle('active');
+        if (window.location.pathname == "/user/estates") {
+            window.addEventListener('click', function(){
+                if(menuWrappers[index].classList.contains('active')){
+                    menuWrappers[index].classList.remove('active');
+                }
+            })
+        }
     });
 });
-
-// const queryName = document.querySelectorAll('.active')
-// console.log(queryName);
-// if (window.location.pathname == "/user/estates") {
-//     const body = document.querySelector('body');
-//     body.addEventListener('click', function () {
-//         console.log('fuori')
-        
-//         if(queryName.length > 0){
-//             queryAllptDue.forEach(query => {
-//             query.classList.remove('active')
-
-//             console.log('dentro')
-
-//        });
-//     }
-//     });
-// }
