@@ -9,5 +9,5 @@ import './createUpdateValidation';
 import './welcomeAnimation';
 import './registerValidation';
 import './modal';
-
+import './actionanimation';
 
