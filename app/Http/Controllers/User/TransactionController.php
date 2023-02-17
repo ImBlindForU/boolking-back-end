@@ -79,6 +79,10 @@ class TransactionController extends Controller
                 'submitForSettlement' => true
                 ]
             ]);
+
+        if(!$result->success){
+            return redirect()->route('user.estates.index')->with('wrong_address', "La sponsorizzazione di $sponsor->type per $estate->title non è riuscita, controlla i dati della tua carta.");
+        }
             
         if(count($estate_sponsor) === 0){
             
