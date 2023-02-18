@@ -47,11 +47,11 @@ class AddressSeeder extends Seeder
                 'street_code' => '213'
             ],
             [
-                'street' => 'Corso Novara',
-                'long' => 14.271193480113432,
-                'lat' => 40.85557304197624, 
-                'city' => 'Napoli',
-                'street_code' => '85'
+                'street' => 'Via Cappella',
+                'long' => 14.056592322201029,
+                'lat' => 40.80265022351319,
+                'city' => 'Campagna',
+                'street_code' => '365'
             ],
             [
                 'street' => 'Via Napoli',
