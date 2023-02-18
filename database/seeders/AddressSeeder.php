@@ -17,15 +17,87 @@ class AddressSeeder extends Seeder
      */
     public function run()
     {
-        for($i = 1; $i < 21 ; $i++){
+        $addresses = [
+            [
+                'street' => 'Piazza Camillo Benso di Cavour',
+                'long' => 13.515936336171842,
+                'lat' => 43.61705464059095,
+                'city' => 'Ancona',
+                'street_code' => '1'
+            ],
+            [
+                'street' => 'Via Cernaia',
+                'long' => 7.676370722784902,
+                'lat' => 45.070804689994624,
+                'city' => 'Torino',
+                'street_code' => '6'
+            ],
+            [
+                'street' => 'Via Degli Avelli',
+                'long' => 11.249823517848778,
+                'lat' => 43.774819086256684,
+                'city' => 'Firenze',
+                'street_code' => '8R'
+            ],
+            [
+                'street' => 'Corso Umberto',
+                'long' => 15.283216651661789,
+                'lat' => 37.85114263918421,
+                'city' => 'Taormina',
+                'street_code' => '213'
+            ],
+            [
+                'street' => 'Corso Novara',
+                'long' => 14.271193480113432,
+                'lat' => 40.85557304197624, 
+                'city' => 'Napoli',
+                'street_code' => '85'
+            ],
+            [
+                'street' => 'Via Napoli',
+                'long' => 16.855322354816003,
+                'lat' => 41.1270335230832,
+                'city' => 'Bari',
+                'street_code' => '212'
+            ],
+            [
+                'street' => 'Via Brindisi',
+                'long' => 17.99087083553427,
+                'lat' => 40.05377311680721,
+                'city' => 'Gallipoli',
+                'street_code' => '7'
+            ],
+            [
+                'street' => 'Via Del Lavatore',
+                'long' => 12.483783989669387,
+                'lat' => 41.900835011307784,
+                'city' => 'Roma',
+                'street_code' => '50'
+            ],
+            [
+                'street' => 'Via Bissula',
+                'long' => 12.257410458923669,
+                'lat' => 45.493640686452274,
+                'city' => 'Venezia',
+                'street_code' => '50'
+            ],
+            [
+                'street' => 'Via Camillo Cavour',
+                'long' => 11.036867435388482,
+                'lat' => 45.88708661377215,
+                'city' => 'Rovereto',
+                'street_code' => '58'
+            ],
+        ]; 
+        for($i = 0; $i < count($addresses); $i++){
             $new_address = new Address();
-            $new_address->street = 'Piazza Casalmaggiore';
-            $new_address->long = 12.517111537811857;
-            $new_address->lat = 41.88352085177411;
-            $new_address->city = 'Roma';
+            $new_address->street = $addresses[$i]['street'];
+            $new_address->long = $addresses[$i]['long'];
+            $new_address->lat = $addresses[$i]['lat'];
+            $new_address->city = $addresses[$i]['city'];
             $new_address->country = 'Italia';
-            $new_address->street_code = '11';
-            $new_address->estate_id = $i;
+            $new_address->street_code = $addresses[$i]['street_code'];
+            $new_address->estate_id = $i + 1;
             $new_address->save();
         }
         
