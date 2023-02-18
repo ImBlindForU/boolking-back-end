@@ -22,7 +22,9 @@
                 </div>
             @enderror
                  --}}
+
             <div class="row-card">
+               
                 @foreach ($sponsors  as $sponsor)
                     <div class="sponsorship-card d-flex flex-column ">
                         <div class="sponsorship title-sponsor">
@@ -37,11 +39,15 @@
                             
                         </div>
                         <div class="sponsorship">
-                            <input type="radio" name="sponsors" value="{{$sponsor->id}}">
+                            <input class=" @error('sponsors') is-invalid @enderror "required type="radio" name="sponsors" value="{{$sponsor->id}}">
                         </div>
                     </div>
                 @endforeach
-                
+                @error('sponsors')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
 
            

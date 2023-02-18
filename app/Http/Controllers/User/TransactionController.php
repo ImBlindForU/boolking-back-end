@@ -37,7 +37,7 @@ class TransactionController extends Controller
         // dd($request->sponsors);
         $payment_method_nonce = $request->payment_method_nonce;
         $sponsor_validation = $request->validate([
-            'sponsors' => 'exists:sponsors,id'
+            'sponsors' =>['required','exists:sponsors,id']
         ]);
         $sponsor = Sponsor::find($request->sponsors);
         $estate = Estate::findOrFail($id);
