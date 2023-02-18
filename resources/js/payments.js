@@ -4,7 +4,7 @@ const token = button.getAttribute('token');
 
 const container1 = document.querySelector('.container1');
 
-const rightSide = document.querySelector('.right-side');
+const rightSide = document.querySelector('.right-side1');
 const animation = document.getAnimations('slide-post');
 const animation1 = document.getAnimations('slide-top');
 

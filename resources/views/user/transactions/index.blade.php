@@ -54,23 +54,23 @@
 
     
     <div class="container1">
-        <div class="left-side">
-                <div class="card">
-                    <div class="card-line"></div>
-                    <div class="buttons"></div>
+        <div class="left-side1">
+                <div class="card1">
+                    <div class="card-line1"></div>
+                    <div class="buttons1"></div>
                 </div>
-                    <div class="post">
-                        <div class="post-line"></div>
-                        <div class="screen">
-                            <div class="dollar">$</div>
+                    <div class="post1">
+                        <div class="post-line1"></div>
+                        <div class="screen1">
+                            <div class="dollar1">$</div>
                     </div>
-                    <div class="numbers"></div>
-                    <div class="numbers-line2"></div>
+                    <div class="numbers1"></div>
+                    <div class="numbers-line21"></div>
                 </div>
         </div>
-        <div class="right-side">
-            <div class="new">New Transaction</div>
-            <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 451.846 451.847"><path d="M345.441 248.292L151.154 442.573c-12.359 12.365-32.397 12.365-44.75 0-12.354-12.354-12.354-32.391 0-44.744L278.318 225.92 106.409 54.017c-12.354-12.359-12.354-32.394 0-44.748 12.354-12.359 32.391-12.359 44.75 0l194.287 194.284c6.177 6.18 9.262 14.271 9.262 22.366 0 8.099-3.091 16.196-9.267 22.373z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#cfcfcf"/></svg>    
+        <div class="right-side1">
+            <div class="new1">New Transaction</div>
+            <svg class="arrow1" xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 451.846 451.847"><path d="M345.441 248.292L151.154 442.573c-12.359 12.365-32.397 12.365-44.75 0-12.354-12.354-12.354-32.391 0-44.744L278.318 225.92 106.409 54.017c-12.354-12.359-12.354-32.394 0-44.748 12.354-12.359 32.391-12.359 44.75 0l194.287 194.284c6.177 6.18 9.262 14.271 9.262 22.366 0 8.099-3.091 16.196-9.267 22.373z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#cfcfcf"/></svg>    
         </div>
    </div>
     <script src="https://js.braintreegateway.com/web/dropin/1.34.0/js/dropin.min.js"></script>
