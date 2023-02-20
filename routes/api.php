@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\EstateController;
 use App\Http\Controllers\Api\LeadController;
 use App\Http\Controllers\Api\ServiceController;
+use App\Http\Controllers\Api\ViewsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,3 +26,5 @@ Route::get('estates', [EstateController::class, 'index']);
 Route::get('services', [ServiceController::class, 'index']);
 Route::get('estates/{estate}', [EstateController::class, 'show']);
 Route::post('leads', [LeadController::class, 'store']);
+Route::post('views', [ViewsController::class, 'store']);
+
