@@ -53,7 +53,6 @@
                 <a href="{{ route('user.estates.index') }}">Proprietà</a>
                 <a href="{{ route('user.leads.index') }}">Messaggi</a>
                 <a href="">Statistiche</a>
-                <a href="">Sponsorships</a>
                 <a href="{{ route('homeFront') }}">Torna al sito</a>
             </div>
         </div>
