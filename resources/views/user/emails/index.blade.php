@@ -12,10 +12,10 @@
                     {{-- HEAD --}}
                     <thead>
                         <tr class="text-center">
-                            <th scope="col" class="pe-4">Nome</th>
-                            <th scope="col" class="pe-4">Mail</th>
-                            <th scope="col" class="pe-4">Proprietà</th>
-                            <th scope="col">Messaggio</th>
+                            <th scope="col" class="pe-4 text-start">Nome</th>
+                            <th scope="col" class="pe-4 text-start">Mail</th>
+                            <th scope="col" class="pe-4 text-start">Proprietà</th>
+                            <th scope="col" class="text-start">Messaggio</th>
                         </tr>
                     </thead>
                     {{-- / HEAD --}}
