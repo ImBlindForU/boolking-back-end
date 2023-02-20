@@ -43,7 +43,7 @@
                             @empty
                                 <tr>
                                     <th>
-                                        NON CI SONO MESSAGGI
+                                        La Proprietà {{ $estate->title }} non ha ancora messaggi.
                                     </th>
                                 </tr>
                             @endforelse
