@@ -13,7 +13,7 @@ class ViewsController extends Controller
         $data = $request->all();
         $viewsValidation = Validator::make($data,[
             'estate_id' => ['required','exists:estates,id'],
-            'guest_id' => ['required'],
+            'guest_ip' => ['required'],
         ]);
 
         if($viewsValidation->fails()){
