@@ -16,13 +16,8 @@ class LeadController extends Controller
 
         $estates = Estate::all()->where('user_id', Auth::user()->id);
 
-        foreach ($estates as $estate) {
-            if (Lead::where('estate_id', '=', $estate->id)->count() > 0) {
-                $var = Lead::all()->where('estate_id', $estate->id)->toArray();
-                array_push($leads, $var);
-            }
-        }
+        $estates->join('leads', 'leads.estate_id', '=', 'estates.id');
 
-        return view('user.emails.index', compact('leads'));
+        return view('user.emails.index', compact('estates'));
     }
 }
