@@ -32,7 +32,7 @@ class EstateSeeder extends Seeder
             [
                 'title' => 'Casetta in campagna',
                 'type' => 'Casa',
-                'cover_img' => 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/125635640.jpg?k=3505df48163fdc2555051b73fa838a5bd067b310f6ba32ee97326b82bdd3e267&o=&hp=1'
+                'cover_img' => 'https://i.pinimg.com/736x/1e/17/48/1e1748dfd37848c8a844221b9223060f--casette-log-cabins.jpg'
             ],
             [
                 'title' => 'Attico con vista mare',
