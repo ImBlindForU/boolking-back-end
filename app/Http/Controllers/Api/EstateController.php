@@ -35,11 +35,13 @@ class EstateController extends Controller
             }
         }
 
-        $estates = Estate::with('images', 'address', 'user')
+        // Estate query
+        $estates = Estate::with('images', 'address', 'user', 'sponsors')
                 ->where('is_visible', 1)
                 ->where('bed_number', '>=', $bed)
                 ->where('room_number', '>=', $room_number);
 
+        // If request has street or city
         if($request->has('street') || $request->has('city')){
             $street = $request->street;
             $city = $request->city;
@@ -99,12 +101,14 @@ class EstateController extends Controller
             }, "=", count($services))->with('services')->get();
         }
 
+        // Response
         return response()->json([
             'success' => true,
             'results' => $estates->get(),
         ]);
     }
 
+    // function show
     public function show($slug){
         $estate = Estate::with('images', 'services', 'address', 'user')->where('slug', $slug)->first();
         if($estate){
