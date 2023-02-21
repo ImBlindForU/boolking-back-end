@@ -11,7 +11,6 @@
 
         <div class="text-center">
 
-            {{-- <div style="width: 500px;"><canvas id="dimensions"></canvas></div><br /> --}}
             <div style="width: 100%;"><canvas id="acquisitions"></canvas></div>
         </div>
     </div>

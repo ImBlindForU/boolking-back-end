@@ -14,8 +14,8 @@ if (statsTitle) {
         element.shift();
         arr.push(element[0])
     });
-    // console.log(arr);
-  new Chart(
+
+    new Chart(
     document.getElementById('acquisitions'),
     {
       type: 'bar',
@@ -24,12 +24,15 @@ if (statsTitle) {
         datasets: [
           {
             label: 'Visualizzazioni per mese',
-            data: arr.map(row => row.views)
-          }
+            data: arr.map(row => row.views),
+            backgroundColor: '#ff5a60'
+          }, 
+          
         ]
       }
     }
   );
+
 
   window.addEventListener('resize', onWindowResize)
 
