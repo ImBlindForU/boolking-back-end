@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
             EstateSeeder::class,
             ServiceSeeder::class,
             AddressSeeder::class,
-            SponsorSeeder::class
+            SponsorSeeder::class,
+            ViewSeeder::class
         ]);
     }
 }
