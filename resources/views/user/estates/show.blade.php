@@ -54,25 +54,59 @@
                         <p><span>Bagni:</span> {{ $estate->bathroom_number }}</p>
                     </div>
                 </div>
-                <dl style="">
-                    <dt>Servizi aggiuntivi:</dt>
 
-                    {{-- services --}}
-                    @forelse ($estate->services as $service)
-                        <dl>{{ $service->name }}</dl>
-                    @empty
-                        <dl>
-                            Nessun servizio specificato
+                {{-- blocco basso --}}
+                <div class="row">
+
+                    {{-- blocco sx --}}
+                    <div class="col-6">
+                        <dl style="">
+                            <dt>Servizi aggiuntivi:</dt>
+
+                            {{-- services --}}
+                            @forelse ($estate->services as $service)
+                                <dl>{{ $service->name }}</dl>
+                            @empty
+                                <dl>
+                                    Nessun servizio specificato
+                                </dl>
+                            @endforelse
+                            {{-- / services --}}
                         </dl>
-                    @endforelse
-                    {{-- / services --}}
-                </dl>
-                <div>
+                        <div>
 
 
-                    <p><span>Descrizione:</span> {{ $estate->description }}</p>
+                            <p><span>Descrizione:</span> {{ $estate->description }}</p>
+
+                        </div>
+                    </div>
+                    {{-- blocco sx --}}
+
+                    {{-- blocco dx --}}
+                    <dl style="" class="col-6">
+                        <dt>Sponsorizzazioni:</dt>
+
+                        @forelse ($estate->sponsors as $sponsor)
+                            <dt>
+                                {{ $sponsor->type }}
+                            </dt>
+                            <dl>
+                                Inizio sponsorizzazione: {{ $sponsor->pivot->start_date }}
+                            </dl>
+                            <dl>
+                                Fine sponsorizzazione: {{ $sponsor->pivot->end_date }}
+                            </dl>
+                        @empty
+                            <dl>
+                                Nessuna sponsorizzazione attiva
+                            </dl>
+                        @endforelse
+
+                    </dl>
+                    {{-- blocco dx --}}
 
                 </div>
+                {{-- blocco basso --}}
 
 
 
