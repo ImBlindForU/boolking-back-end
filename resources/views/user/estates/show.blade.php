@@ -114,6 +114,9 @@
                 <div class="mt-5 mb-5">
                     <a class="btn our-btn-header px-3" href="{{ route('user.estates.index') }}">Torna alle proprietà</a>
                 </div>
+                <div class="mt-5 mb-5">
+                    <a class="btn our-btn-header px-3" href="{{ route('user.stats.index', $estate->id) }}">Statistiche</a>
+                </div>
                 {{-- / index btn --}}
             </div>
             {{-- / SINGLE ESTATE --}}

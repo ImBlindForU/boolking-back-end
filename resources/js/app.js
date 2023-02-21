@@ -10,4 +10,5 @@ import './welcomeAnimation';
 import './registerValidation';
 import './modal';
 import './actionAnimation';
+import './graph';
 

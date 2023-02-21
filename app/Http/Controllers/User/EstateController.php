@@ -73,12 +73,11 @@ class EstateController extends Controller
         $response = $client->request('GET', $endpoint,);
         $tom_result = json_decode($response->getBody(), true);
         if ($tom_result["summary"]["totalResults"] == 1) {
-            
+
             $form_data['estate_id'] = $new_estate->id;
             $form_data['long'] =  $tom_result['results'][0]['position']['lon'];
             $form_data['lat'] =  $tom_result['results'][0]['position']['lat'];
             $new_address = Address::create($form_data);
-
         } else {
             $new_estate->update(["is_visible" => 0]);
             return redirect()->route('user.estates.index')->with("wrong_address", "L'indirizzo di $new_estate->title sembra essere sbagliato, per rendere l'annuncio visibile inserisci un indirizzo valido");
@@ -136,7 +135,6 @@ class EstateController extends Controller
      */
     public function update(UpdateEstateRequest $request, Estate $estate)
     {
-
         $form_data = $request->validated();
         $form_data['slug'] = Helpers::generateSlug($form_data['title']);
 

@@ -4,6 +4,7 @@ use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\DashboardController;
 use App\Http\Controllers\User\EstateController;
+use App\Http\Controllers\User\EstateStatsController;
 use App\Http\Controllers\User\LeadController;
 use App\Http\Controllers\User\TransactionController;
 use Illuminate\Support\Facades\Route;
@@ -39,6 +40,7 @@ Route::middleware(['auth', 'verified'])->name('user.')->prefix('/user')->group(f
     Route::get('transactions/{estates}', [TransactionController::class, 'index'])->name('transaction.index');
     Route::post('transactions/process/{estates}', [TransactionController::class, 'process'])->name('transaction.process');
     Route::get('leads', [LeadController::class, 'index'])->name('leads.index');
+    Route::get('stats/{estates}', [EstateStatsController::class, 'index'])->name('stats.index');
 });
 
 
