@@ -50,7 +50,11 @@
                             <tr class="table-row">
                                 <th scope="row">{{ $estate->title }}</th>
                                 <td class="w-25">
-                                    <img src="{{ asset('storage/' . $estate->cover_img) }}" alt="" srcset="">
+                                    @if (str_contains($estate->cover_img, 'cover'))
+                                        <img src="{{ asset('storage/' . $estate->cover_img) }}">
+                                    @else
+                                        <img src="{{ $estate->cover_img }}">
+                                    @endif
                                 </td>
                                 <td>{{ count($estate->sponsors) === 0 ? 'No' : 'Si' }} </td>
                                 <td>{{ $estate->type }}</td>
