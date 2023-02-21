@@ -15,15 +15,31 @@ class EstateStatsController extends Controller
         $estate = Estate::findOrFail($id);
         $views = [];
 
+        $months = [
+            "",
+            "Gen",
+            "Feb",
+            "Mar",
+            "Apr",
+            "Mag",
+            "Giu",
+            "Lug",
+            "Ago",
+            "Set",
+            "Ott",
+            "Nov",
+            "Dic"
+        ];
+
 
         for ($i = 1; $i < 13; $i++) {
             $stats = DB::select("SELECT  `estate_id`, COUNT(`guest_ip`) as 'ViewsCount' FROM `views` WHERE MONTH(date) = $i AND `estate_id` = $estate->id  GROUP BY `estate_id`");
 
             if (count($stats) > 0) {
-                $views[$i]['mese'] = $i;
+                $views[$i]['mese'] = $months[$i];
                 $views[$i]['views'] = $stats[0]->ViewsCount;
             } else {
-                $views[$i]['mese'] = $i;
+                $views[$i]['mese'] = $months[$i];
                 $views[$i]['views'] = 0;
             }
         }

@@ -3,7 +3,6 @@ import Chart from 'chart.js/auto'
 const statsTitle =  document.getElementById('statsTitle')
 
 
-
 if (statsTitle) {
     
 (async function() {
