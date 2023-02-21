@@ -6,12 +6,14 @@
 
     <div class="container">
 
-        <h1 id="statsTitle">Statistiche di "{{ $estate->title }}"</h1>
+        <h1 class="text-center" id="statsTitle">Statistiche di "{{ $estate->title }}"</h1>
 
 
+        <div class="text-center">
 
-        <div style="width: 500px;"><canvas id="dimensions"></canvas></div><br />
-        <div style="width: 800px;"><canvas id="acquisitions"></canvas></div>
+            {{-- <div style="width: 500px;"><canvas id="dimensions"></canvas></div><br /> --}}
+            <div style="width: 100%;"><canvas id="acquisitions"></canvas></div>
+        </div>
     </div>
 
     {{-- <script type="module" src="dimensions.js"></script>

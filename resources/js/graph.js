@@ -6,24 +6,15 @@ const statsTitle =  document.getElementById('statsTitle')
 
 if (statsTitle) {
     
-
 (async function() {
 
     const viewsToArray = Object.entries(views)
-
     const arr = [];
-    
     viewsToArray.forEach(element => {
         element.shift();
-        // console.log(element);
-
         arr.push(element[0])
     });
-    
-    console.log(arr);
-
-
-
+    // console.log(arr);
   new Chart(
     document.getElementById('acquisitions'),
     {
@@ -39,6 +30,15 @@ if (statsTitle) {
       }
     }
   );
+
+  window.addEventListener('resize', onWindowResize)
+
+    function onWindowResize() {
+        document.getElementById('acquisitions').style.width = "100%";
+        document.getElementById('acquisitions').style.height = "100%";
+    }
+
+
 })();
 
 }
