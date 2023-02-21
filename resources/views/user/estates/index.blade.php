@@ -36,6 +36,7 @@
                         <tr>
                             <th scope="col">Titolo</th>
                             <th scope="col">Cover</th>
+                            <th scope="col">Sponsorizzato</th>
                             <th scope="col">Tipologia</th>
                             <th scope="col">&#x33A1;</th>
                             <th scope="col">Prezzo</th>
@@ -51,6 +52,7 @@
                                 <td class="w-25">
                                     <img src="{{ asset('storage/' . $estate->cover_img) }}" alt="" srcset="">
                                 </td>
+                                <td>{{ count($estate->sponsors) === 0 ? 'No' : 'Si' }} </td>
                                 <td>{{ $estate->type }}</td>
                                 <td>{{ $estate->mq }}</td>
                                 <td>{{ $estate->price }}</td>

@@ -8,6 +8,11 @@
     }
 }
 
+
+dl{
+  padding-left: 0 !important;
+}
+
 .side-bar-links{
 
     & > a{
@@ -222,10 +227,12 @@ gap: 1em .5em;
 .optional-img-show{
     width: calc(100% / 2 - .25em) !important;
     border-radius: 0px 0px 20px 20px;
-
-    @media screen and (min-width: 700px) {
-        
-        
+    height: 150px;
+    
+    @media screen and (min-width: 770px) {
+      
+      
+      height: 200px;
         
         width: calc(100% / 4 - .5em) !important;
             border-radius: 10px !important;

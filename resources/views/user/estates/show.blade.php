@@ -7,6 +7,9 @@
 
         <div class="row justify-content-center mt-5">
             {{-- SINGLE ESTATE --}}
+            <div class="my-3 text-end">
+                <a class="btn our-btn-header px-3" href="{{ route('user.estates.index') }}">Torna alle proprietà</a>
+            </div>
             <div class="col-12 col-lg-10">
                 <h2 class="text-center mb-4">{{ $estate->title }}</h2>
 
@@ -34,7 +37,7 @@
                 </div>
                 <h4 class="mt-5"> Informazioni </h4>
                 <div id="info-wrapper" class="d-flex  flex-wrap justify-content-between w-100">
-                    <div class="street col-12 col-md-9">
+                    <div class="street col-12 col-md-6">
                         <p><span>Visibile:</span> {{ $estate->is_visible ? 'Si' : 'No' }} | <span>Prezzo:</span>
                             {{ $estate->price }}</p>
                         <p><span>Indirizzo:</span> {{ $estate->address?->street }}</p>
@@ -45,7 +48,7 @@
 
                     </div>
 
-                    <div class="estate-details col-12 col-md-3 ">
+                    <div class="estate-details col-12 col-md-6 ">
                         <p><span>&#x33A1;:</span> {{ $estate->mq }}</p>
 
                         <p> <span>Tipologia:</span>{{ $estate->type }} </p>
@@ -56,10 +59,10 @@
                 </div>
 
                 {{-- blocco basso --}}
-                <div class="row">
+                <div class="d-flex  flex-wrap justify-content-between w-100">
 
                     {{-- blocco sx --}}
-                    <div class="col-6">
+                    <div class="col-12 col-md-6">
                         <dl style="">
                             <dt>Servizi aggiuntivi:</dt>
 
@@ -83,26 +86,29 @@
                     {{-- blocco sx --}}
 
                     {{-- blocco dx --}}
-                    <dl style="" class="col-6">
-                        <dt>Sponsorizzazioni:</dt>
+                    <div class="col-12 col-md-6">
 
-                        @forelse ($estate->sponsors as $sponsor)
-                            <dt>
-                                {{ $sponsor->type }}
-                            </dt>
-                            <dl>
-                                Inizio sponsorizzazione: {{ $sponsor->pivot->start_date }}
-                            </dl>
-                            <dl>
-                                Fine sponsorizzazione: {{ $sponsor->pivot->end_date }}
-                            </dl>
-                        @empty
-                            <dl>
-                                Nessuna sponsorizzazione attiva
-                            </dl>
-                        @endforelse
+                        <dl>
+                            <dt>Sponsorizzazioni:</dt>
 
-                    </dl>
+                            @forelse ($estate->sponsors as $sponsor)
+                                <dt>
+                                    {{ $sponsor->type }}
+                                </dt>
+                                <dl>
+                                    Inizio sponsorizzazione: {{ $sponsor->pivot->start_date }}
+                                </dl>
+                                <dl>
+                                    Fine sponsorizzazione: {{ $sponsor->pivot->end_date }}
+                                </dl>
+                            @empty
+                                <dl>
+                                    Nessuna sponsorizzazione attiva
+                                </dl>
+                            @endforelse
+
+                        </dl>
+                    </div>
                     {{-- blocco dx --}}
 
                 </div>
@@ -111,11 +117,10 @@
 
 
                 {{-- index btn --}}
+
                 <div class="mt-5 mb-5">
-                    <a class="btn our-btn-header px-3" href="{{ route('user.estates.index') }}">Torna alle proprietà</a>
-                </div>
-                <div class="mt-5 mb-5">
-                    <a class="btn our-btn-header px-3" href="{{ route('user.stats.index', $estate->id) }}">Statistiche</a>
+                    <a class="btn our-btn-header px-3" href="{{ route('user.stats.index', $estate->id) }}"> Statistiche <i
+                            class="fa-solid fa-chart-simple"></i></a>
                 </div>
                 {{-- / index btn --}}
             </div>
