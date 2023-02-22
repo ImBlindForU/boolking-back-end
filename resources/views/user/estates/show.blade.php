@@ -96,10 +96,10 @@
                                     {{ $sponsor->type }}
                                 </dt>
                                 <dl>
-                                    Inizio sponsorizzazione: {{ $sponsor->pivot->start_date }}
+                                    Inizio: {{ $sponsor->pivot->start_date }}
                                 </dl>
                                 <dl>
-                                    Fine sponsorizzazione: {{ $sponsor->pivot->end_date }}
+                                    Fine: {{ $sponsor->pivot->end_date }}
                                 </dl>
                             @empty
                                 <dl>
