@@ -72,7 +72,7 @@
                 <div class="mb-3 mx-md-2 city-country-input-div">
                     <label for="cap" class="form-label">Cap*</label>
                     <input class="form-control @error('country') is-invalid @enderror" id="cap" type="number"
-                        min="1" name="cap" value="{{ old('cap', $estate->address?->cap) }}" required>
+                        min="1" name="cap" value="00{{ old('cap', $estate->address?->cap) }}" required>
                     @error('cap')
                         <div class="invalid-feedback">
                             {{ $message }}

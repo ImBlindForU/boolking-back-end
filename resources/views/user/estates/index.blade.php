@@ -55,7 +55,7 @@
                                     @else
                                         <img src="{{ $estate->cover_img }}">
                                     @endif
-                                </td>
+                                </td> 
                                 <td>{{ count($estate->sponsors) === 0 ? 'No' : 'Si' }} </td>
                                 <td>{{ $estate->type }}</td>
                                 <td>{{ $estate->mq }}</td>
